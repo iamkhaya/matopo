@@ -5,6 +5,8 @@ RSpec.feature "Users can create new activities" do
     click_link "New Activity"
     fill_in "Name", with: "Hiking"
     fill_in "Description", with: "Go up a mountain"
+    fill_in "Category", with: "Adrenaline"
+
     click_button "Create Activity"
     expect(page).to have_content "Activity has been created."
 
@@ -14,4 +16,16 @@ RSpec.feature "Users can create new activities" do
     title = "Hiking - Activity - Matopo"
     expect(page).to have_title title
   end
+
+  scenario "when providing invalid attributes" do
+    visit "/"
+    click_link "New Activity"
+    click_button "Create Activity"
+
+    expect(page).to have_content "Activity has not been created."
+    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Description can't be blank"
+    expect(page).to have_content "Category can't be blank"
+  end
+
 end
