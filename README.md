@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/iamkhaya/matopo.svg?style=svg)](https://circleci.com/gh/iamkhaya/matopo)  [![Coverage Status](https://coveralls.io/repos/github/iamkhaya/matopo/badge.svg?branch=master)](https://coveralls.io/github/iamkhaya/matopo?branch=master)
+[![CircleCI](https://circleci.com/gh/iamkhaya/matopo.svg?style=svg)](https://circleci.com/gh/iamkhaya/matopo)  [![Coverage Status](https://coveralls.io/repos/github/iamkhaya/matopo/badge.svg?branch=master)](https://coveralls.io/github/iamkhaya/matopo?branch=master) [![Code Climate](https://codeclimate.com/github/iamkhaya/matopo/badges/gpa.svg)](https://codeclimate.com/github/iamkhaya/matopo)
 
 # README
 
