@@ -1,4 +1,10 @@
+[![CircleCI](https://circleci.com/gh/iamkhaya/matopo.svg?style=svg)](https://circleci.com/gh/iamkhaya/matopo)
+
+[![Coverage Status](https://coveralls.io/repos/github/iamkhaya/matopo/badge.svg?branch=master)](https://coveralls.io/github/iamkhaya/matopo?branch=master)
+
 # README
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
