@@ -1,0 +1,40 @@
+1. Generate new application
+2. Create the page feature spec
+require "rails_helper"
+RSpec.feature "Users can create new projects" do
+  scenario "with valid attributes" do
+    visit "/"
+    click_link "New Project"
+    fill_in "Name", with: "Sublime Text 3"
+    fill_in "Description", with: "A text editor for everyone"
+    click_button "Create Project"
+    expect(page).to have_content "Project has been created."
+  end
+end
+3. Add the root route
+
+Rails.application.routes.draw do
+  root "projects#index"
+end
+
+4. generate the controller
+rails g controller projects
+
+5. define index Action in your controller
+
+6. create the view at app/views/projects/index.html.erb
+
+7. Add a link to your index page
+<%= link_to "New Activity", new_activity_path %>
+
+8. Add resources to routes
+resources :projects
+
+9. Add new action to controller
+def new
+          @project = Project.new
+end
+
+10. Add the model
+rails g model project name description
+bundle exec rake db:migrate
