@@ -1,52 +1,52 @@
 1. Generate new application
 2. Create the page feature spec
 require "rails_helper"
-RSpec.feature "Users can create new projects" do
+RSpec.feature "Users can create new activitys" do
   scenario "with valid attributes" do
     visit "/"
-    click_link "New Project"
+    click_link "New activity"
     fill_in "Name", with: "Sublime Text 3"
     fill_in "Description", with: "A text editor for everyone"
-    click_button "Create Project"
-    expect(page).to have_content "Project has been created."
+    click_button "Create activity"
+    expect(page).to have_content "activity has been created."
   end
 end
 3. Add the root route
 
 Rails.application.routes.draw do
-  root "projects#index"
+  root "activitys#index"
 end
 
 4. generate the controller
-rails g controller projects
+rails g controller activitys
 
 5. define index Action in your controller
 
-6. create the view at app/views/projects/index.html.erb
+6. create the view at app/views/activitys/index.html.erb
 
 7. Add a link to your index page
 <%= link_to "New Activity", new_activity_path %>
 
 8. Add resources to routes
-resources :projects
+resources :activitys
 
 9. Add new action to controller
 def new
-          @project = Project.new
+          @activity = activity.new
 end
 
 10. Add the model
-rails g model project name description
+rails g model activity name description
 bundle exec rake db:migrate
 
 Add the new form under new view
 
 11. Add the create action to the controller
 def create
-  @project = Project.new(project_params)
-  if @project.save
-    flash[:notice] = "Project has been created."
-    redirect_to @project
+  @activity = activity.new(activity_params)
+  if @activity.save
+    flash[:notice] = "activity has been created."
+    redirect_to @activity
   else
     # nothing, yet
 end end
@@ -70,18 +70,18 @@ Add tests for RUD
 
 1. create factory
         require "rails_helper"
-        RSpec.feature "Users can view projects" do
-          scenario "with the project details" do
-            project = FactoryGirl.create(:project, name: "Sublime Text 3")
+        RSpec.feature "Users can view activitys" do
+          scenario "with the activity details" do
+            activity = FactoryGirl.create(:activity, name: "Sublime Text 3")
             visit "/"
             click_link "Sublime Text 3"
-            expect(page.current_url).to eq project_url(project)
+            expect(page.current_url).to eq activity_url(activity)
 end end
 
 2. Create factory
 
 FactoryGirl.define do
-  factory :project do
-    name "Example project"
+  factory :activity do
+    name "Example activity"
   end
 end

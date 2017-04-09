@@ -21,6 +21,21 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Activity.find(params[:id])
   end
+
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    @activity = Activity.find(params[:id])
+    if @activity.update(activity_params)
+      flash[:notice] = "Activity has been updated."
+      redirect_to @activity
+    else
+      flash.now[:alert] = "Activity has not been updated."
+      render "edit"
+    end
+  end
 end
 
 private
