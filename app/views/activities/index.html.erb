@@ -1,1 +1,9 @@
+<h1>Projects</h1>
 <%= link_to "New Activity", new_activity_path %>
+<div id="activities">
+    <% @activities.each do |activity| %>
+    <h2><%= link_to activity.name, activity %></h2>
+    <p><%= activity.description %></p>
+    <p><%= activity.category %></p>
+    <% end %>
+</div>

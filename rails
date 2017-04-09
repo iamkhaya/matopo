@@ -38,3 +38,50 @@ end
 10. Add the model
 rails g model project name description
 bundle exec rake db:migrate
+
+Add the new form under new view
+
+11. Add the create action to the controller
+def create
+  @project = Project.new(project_params)
+  if @project.save
+    flash[:notice] = "Project has been created."
+    redirect_to @project
+  else
+    # nothing, yet
+end end
+
+12 Add params
+private
+def activity_params
+  params.require(:activity).permit(:name, :description, :category)
+end
+
+
+Add flash message to application.html
+<% flash.each do |key, message| %>
+  <div><%= message %></div>
+<% end %>
+
+
+RUD
+-------
+Add tests for RUD
+
+1. create factory
+        require "rails_helper"
+        RSpec.feature "Users can view projects" do
+          scenario "with the project details" do
+            project = FactoryGirl.create(:project, name: "Sublime Text 3")
+            visit "/"
+            click_link "Sublime Text 3"
+            expect(page.current_url).to eq project_url(project)
+end end
+
+2. Create factory
+
+FactoryGirl.define do
+  factory :project do
+    name "Example project"
+  end
+end
