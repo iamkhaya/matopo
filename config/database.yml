@@ -7,12 +7,14 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  username: root
+  password: root
   timeout: 10000
 
 development:
   <<: *default
   database: matopo_development
-  username: root
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

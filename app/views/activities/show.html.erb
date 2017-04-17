@@ -1,2 +1,8 @@
 <% title(@activity.name, "Activity") %>
+
+<h1><%= @activity.name %></h1>
+<p><%= @activity.description %></p>
+<p><%= @activity.category %></p>
+
+
 <%= link_to "Edit Activity", edit_activity_path(@activity) %>
