@@ -1,5 +1,11 @@
-<h1>Activities</h1>
-<%= link_to "New Activity", new_activity_path %>
+<header>
+    <h1>Activities</h1>
+
+<ul class="actions">
+  <li>
+<%= link_to "New Activity", new_activity_path, class: "new" %>
+</li>
+</header>
 <div id="activities">
     <% @activities.each do |activity| %>
     <h2><%= link_to activity.name, activity %></h2>

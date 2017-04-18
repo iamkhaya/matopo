@@ -25,6 +25,15 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Add coveralls gem
 gem 'coveralls', require: false
+# Bootstrap Gemfile
+gem "bootstrap-sass", "~> 3.3"
+# Font-Awesome gem
+gem "font-awesome-rails", "~> 4.3"
+# Simple Form gem
+gem "simple_form"
+
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
