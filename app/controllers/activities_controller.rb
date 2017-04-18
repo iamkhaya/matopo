@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+
   def index
     @activities = Activity.all
   end
@@ -49,4 +51,11 @@ end
 private
 def activity_params
   params.require(:activity).permit(:name, :description, :category)
+end
+
+def set_activity
+  @activity = Activity.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+  flash[:alert] = "The activity you were looking for could not be found."
+  redirect_to activities_path
 end
