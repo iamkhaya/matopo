@@ -1,47 +1,94 @@
+## Building you Ruby on Rails Application
 1. Generate new application
+
+### Actions: new, index and create
 2. Create the page feature spec
+
+```ruby
 require "rails_helper"
-RSpec.feature "Users can create new activitys" do
+RSpec.feature "Users can create new activities" do
   scenario "with valid attributes" do
     visit "/"
-    click_link "New activity"
-    fill_in "Name", with: "Sublime Text 3"
-    fill_in "Description", with: "A text editor for everyone"
-    click_button "Create activity"
-    expect(page).to have_content "activity has been created."
-  end
-end
-3. Add the root route
+    click_link "New Activity"
+    fill_in "Name", with: "Hiking"
+    fill_in "Description", with: "Go up a mountain"
+    fill_in "Category", with: "Adrenaline"
 
+    click_button "Create Activity"
+    expect(page).to have_content "Activity has been created."
+
+    activity = Activity.find_by(name: "Hiking")
+    expect(page.current_url).to eq activity_url(activity)
+
+    title = "Hiking - Activity - Matopo"
+    expect(page).to have_title title
+  end
+
+  scenario "when providing invalid attributes" do
+    visit "/"
+    click_link "New Activity"
+    click_button "Create Activity"
+
+    expect(page).to have_content "Activity has not been created."
+    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Description can't be blank"
+    expect(page).to have_content "Category can't be blank"
+  end
+
+end
+```
+
+3. Add the root route and add resources to routes
+
+```ruby
 Rails.application.routes.draw do
   root "activitys#index"
+  resources :activities
 end
+```
 
-4. generate the controller
-rails g controller activitys
+4. Generate the controller
 
-5. define index Action in your controller
+```ruby
+rails g controller activities
+```
+
+5. Define index action in your controller
+
+```ruby
+def index
+  @activities = Activity.all
+end
+```
+
 
 6. create the view at app/views/activitys/index.html.erb
 
 7. Add a link to your index page
 <%= link_to "New Activity", new_activity_path %>
 
-8. Add resources to routes
-resources :activitys
+
 
 9. Add new action to controller
-def new
-          @activity = activity.new
-end
 
-10. Add the model
+```ruby
+def new
+  @activity = Activity.new
+end
+```
+
+10. Add the model, then run a migration
+
+```ruby
 rails g model activity name description
-bundle exec rake db:migrate
+```
+
+`bundle exec rake db:migrate`
 
 Add the new form under new view
 
 11. Add the create action to the controller
+```ruby
 def create
   @activity = activity.new(activity_params)
   if @activity.save
@@ -50,38 +97,104 @@ def create
   else
     # nothing, yet
 end end
+```
 
-12 Add params
+12. Add params to the controller
+```ruby
 private
 def activity_params
   params.require(:activity).permit(:name, :description, :category)
 end
+```
 
-
-Add flash message to application.html
-<% flash.each do |key, message| %>
-  <div><%= message %></div>
-<% end %>
-
+13. Add flash message to application.html.erb
+```html
+<div class="container">
+  <% flash.each do |key, message| %>
+  <div class="alert alert-<%= key %>">
+      <%= message %>
+  </div>
+  <% end %>
+  <%= yield %>
+</div>
+```
 
 RUD
 -------
 Add tests for RUD
 
-1. create factory
-        require "rails_helper"
-        RSpec.feature "Users can view activitys" do
-          scenario "with the activity details" do
-            activity = FactoryGirl.create(:activity, name: "Sublime Text 3")
-            visit "/"
-            click_link "Sublime Text 3"
-            expect(page.current_url).to eq activity_url(activity)
-end end
+2. Create factory to use for test
 
-2. Create factory
-
+```ruby
 FactoryGirl.define do
   factory :activity do
     name "Example activity"
   end
 end
+```
+
+1. Write a feature test
+```ruby
+RSpec.feature "Users can edit existing categories" do
+  before do
+    FactoryGirl.create(:category, name: "Adrenaline")
+    visit "/"
+    click_link "Adrenaline"
+    click_link "Edit Category"
+  end
+
+  scenario "with valid attributes" do
+    fill_in "Name", with: "Adrenaline Rush"
+    click_button "Update Category"
+    expect(page).to have_content "Category has been updated."
+    expect(page).to have_content "Adrenaline Rush"
+  end
+
+  scenario "with invalid attributes" do
+    fill_in "Name", with: ""
+    click_button "Update Category"
+    expect(page).to have_content "Category has not been updated."
+  end
+end
+```
+
+2. Add edit.html.erb
+
+```ruby
+<header>
+<h1>Edit Category</h1>
+</header>
+
+<%= render "form", category: @category%>
+```
+
+3. Add edit and update actions
+
+```ruby
+def edit
+  @category = Category.find(params[:id])
+end
+
+def update
+  @category = Category.find(params[:id])
+  if @category.update(category_params)
+    flash[:notice] = "Category has been updated."
+    redirect_to @category
+  else
+    flash.now[:alert] = "Category has not been updated."
+    render "edit"
+  end
+end
+```
+
+
+destroy
+
+```ruby
+def destroy
+  @activity = Activity.find(params[:id])
+  @activity.destroy
+  flash[:notice] = "Activity has been deleted."
+  redirect_to activities_path
+end
+```
