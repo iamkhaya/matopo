@@ -1,31 +1,26 @@
 require "rails_helper"
+
 RSpec.feature "Users can create new activities" do
+  before do
+    category = FactoryGirl.create(:category, name: "Adrenaline")
+    visit category_path(category)
+    click_link "Add Activity"
+  end
+
   scenario "with valid attributes" do
-    visit "/"
-    click_link "New Activity"
     fill_in "Name", with: "Hiking"
     fill_in "Description", with: "Go up a mountain"
-    fill_in "Category", with: "Adrenaline"
 
     click_button "Create Activity"
     expect(page).to have_content "Activity has been created."
 
-    activity = Activity.find_by(name: "Hiking")
-    expect(page.current_url).to eq activity_url(activity)
-
-    title = "Hiking - Activity - Matopo"
-    expect(page).to have_title title
   end
 
-  scenario "when providing invalid attributes" do
-    visit "/"
-    click_link "New Activity"
+  scenario "with invalid attributes" do
     click_button "Create Activity"
 
     expect(page).to have_content "Activity has not been created."
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Description can't be blank"
-    expect(page).to have_content "Category can't be blank"
   end
-
 end

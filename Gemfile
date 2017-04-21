@@ -51,6 +51,9 @@ group :development, :test do
 	gem 'capybara'
   # Factory Girl
   gem "factory_girl_rails"
+  # Pry
+  gem "pry"
+  gem "pry-rails" # Assuming you are using rails
 
 end
 

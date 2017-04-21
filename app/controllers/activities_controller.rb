@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  before_action :set_category
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,14 +7,15 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @activity = Activity.new
+    @activity = @category.activities.build
   end
 
   def create
-    @activity = Activity.new(activity_params)
+    @activity = @category.activities.build(activity_params)
+
     if @activity.save
       flash[:notice] = "Activity has been created."
-      redirect_to @activity
+      redirect_to [@category, @activity]
     else
       flash.now[:alert] = "Activity has not been created."
       render "new"
@@ -21,41 +23,21 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activity = Activity.find(params[:id])
   end
 
-  def edit
-    @activity = Activity.find(params[:id])
-  end
 
-  def update
-    @activity = Activity.find(params[:id])
-    if @activity.update(activity_params)
-      flash[:notice] = "Activity has been updated."
-      redirect_to @activity
-    else
-      flash.now[:alert] = "Activity has not been updated."
-      render "edit"
-    end
-  end
+ private
+ def activity_params
+   params.require(:activity).permit(:name, :description)
+ end
 
-  def destroy
-    @activity = Activity.find(params[:id])
-    @activity.destroy
-    flash[:notice] = "Activity has been deleted."
-    redirect_to activities_path
-  end
+ def set_activity
+   @activity = @category.activities.find(params[:id])
+ end
 
-end
 
-private
-def activity_params
-  params.require(:activity).permit(:name, :description, :category)
-end
+ def set_category
+    @category = Category.find(params[:category_id])
+ end
 
-def set_activity
-  @activity = Activity.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-  flash[:alert] = "The activity you were looking for could not be found."
-  redirect_to activities_path
 end

@@ -6,14 +6,26 @@
 
     <ul class="actions">
         <li>
-            <%= link_to "Edit Category", edit_category_path(@category), class: "edit" %>
-        </li>
-        <li>
-            <%= link_to "Delete category", category_path(@category),
-                method: :delete,
-                data: { confirm: "Are you sure you want to delete this category?" },
-                class: "delete"
-            %>
-        </li>
-    </ul>
-  </header>
+            <%= link_to "Add Activity", new_category_activity_path(@category), class: "new" %></p>
+    </li>
+    <li>
+        <%= link_to "Edit Category", edit_category_path(@category), class: "edit" %>
+    </li>
+    <li>
+        <%= link_to "Delete category", category_path(@category),
+                    method: :delete,
+                    data: { confirm: "Are you sure you want to delete this category?" },
+                    class: "delete"
+                %>
+    </li>
+</ul>
+
+<ul id="activities">
+    <% @category.activities.each do |activity| %>
+      <li>
+          #<%= activity.id %> -
+          <%= link_to activity.name, [@category, activity] %>
+      </li>
+    <% end %>
+</ul>
+</header>

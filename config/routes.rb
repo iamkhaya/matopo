@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  root "activities#index"
+  root "categories#index"
 
-  resources :activities
-  resources :categories
+  resources :categories do
+    resources :activities
+  end
 end

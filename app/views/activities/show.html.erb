@@ -1,17 +1,19 @@
-<% title(@activity.name, "Activity") %>
+<header>
+  <h1>Category: <%= @category.name %></h1>
+</header>
 
 <header>
-    <h1><%= @activity.name %></h1>
+  <h1><%= @activity.name %></h1>
+</header>
 
-    <p><%= @activity.description %></p>
-    <p><%= @activity.category %></p>
+<p><%=simple_format(@activity.description) %></p>
 
     <ul class="actions">
         <li>
-            <%= link_to "Edit Activity", edit_activity_path(@activity), class: "edit" %>
+            <%= link_to "Edit Activity", edit_category_activity_path(@activity), class: "edit" %>
         </li>
         <li>
-            <%= link_to "Delete Activity", activity_path(@activity),
+            <%= link_to "Delete Activity", category_activity_path(@activity),
                 method: :delete,
                 data: { confirm: "Are you sure you want to delete this activity?" },
                 class: "delete"
