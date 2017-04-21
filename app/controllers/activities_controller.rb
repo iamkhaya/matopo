@@ -36,6 +36,12 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def destroy
+    @activity.destroy
+    flash[:notice] = 'Activity has been deleted.'
+    redirect_to @category
+  end
+
   def show; end
 
   private

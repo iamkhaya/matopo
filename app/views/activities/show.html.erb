@@ -13,7 +13,7 @@
           <li><%= link_to "Edit Activity", [:edit, @category, @activity], class: "edit" %>
         </li>
         <li>
-            <%= link_to "Delete Activity", category_activity_path(@activity),
+            <%= link_to "Delete Activity", [@category, @activity],
                 method: :delete,
                 data: { confirm: "Are you sure you want to delete this activity?" },
                 class: "delete"
