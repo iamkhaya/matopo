@@ -31,6 +31,8 @@ gem "bootstrap-sass", "~> 3.3"
 gem "font-awesome-rails", "~> 4.3"
 # Simple Form gem
 gem "simple_form"
+# Devise gem for Authentication
+gem "devise"
 
 
 
