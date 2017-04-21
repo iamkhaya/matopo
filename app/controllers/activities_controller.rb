@@ -14,30 +14,41 @@ class ActivitiesController < ApplicationController
     @activity = @category.activities.build(activity_params)
 
     if @activity.save
-      flash[:notice] = "Activity has been created."
+      flash[:notice] = 'Activity has been created.'
       redirect_to [@category, @activity]
     else
-      flash.now[:alert] = "Activity has not been created."
-      render "new"
+      flash.now[:alert] = 'Activity has not been created.'
+      render 'new'
     end
   end
 
-  def show
+  def edit
+    @activity = Activity.find(params[:id])
   end
 
+  def update
+    if @activity.update(activity_params)
+      flash[:notice] = 'Activity has been updated.'
+      redirect_to [@category, @activity]
+    else
+      flash.now[:alert] = 'Activity has not been updated.'
+      render 'edit'
+    end
+  end
 
- private
- def activity_params
-   params.require(:activity).permit(:name, :description)
- end
+  def show; end
 
- def set_activity
-   @activity = @category.activities.find(params[:id])
- end
+  private
 
+  def activity_params
+    params.require(:activity).permit(:name, :description)
+  end
 
- def set_category
+  def set_activity
+    @activity = @category.activities.find(params[:id])
+  end
+
+  def set_category
     @category = Category.find(params[:category_id])
- end
-
+  end
 end
