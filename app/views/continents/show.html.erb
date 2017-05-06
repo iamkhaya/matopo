@@ -1,0 +1,22 @@
+<% title(@continent.name, "Continent") %>
+
+<header>
+    <h1><%= @continent.name %></h1>
+
+    <ul class="actions">
+        <li>
+            <%= link_to "Add Continent", new_continent_path(@continent), class: "new" %></p>
+    </li>
+    <li>
+        <%= link_to "Edit Continent", edit_continent_path(@continent), class: "edit" %>
+    </li>
+    <li>
+        <%= link_to "Delete Continent", continent_path(@continent),
+                    method: :delete,
+                    data: { confirm: "Are you sure you want to delete this continent?" },
+                    class: "delete"
+                %>
+    </li>
+</ul>
+
+</header>
