@@ -5,18 +5,31 @@
 
     <ul class="actions">
         <li>
-            <%= link_to "Add Continent", new_continent_path(@continent), class: "new" %></p>
-    </li>
-    <li>
-        <%= link_to "Edit Continent", edit_continent_path(@continent), class: "edit" %>
-    </li>
-    <li>
-        <%= link_to "Delete Continent", continent_path(@continent),
+          <%= link_to "New Region", new_continent_region_path(@continent),class: "new" %>
+        </li>
+
+        <li>
+            <%= link_to "Add Continent", new_continent_path(@continent), class: "new" %>
+        </li>
+        <li>
+          <%= link_to "Edit Continent", edit_continent_path(@continent), class: "edit" %>
+        </li>
+        <li>
+          <%= link_to "Delete Continent", continent_path(@continent),
                     method: :delete,
                     data: { confirm: "Are you sure you want to delete this continent?" },
                     class: "delete"
-                %>
-    </li>
-</ul>
+          %>
+        </li>
+      </ul>
+
+      <ul id="regions">
+          <% @continent.regions.each do |region| %>
+            <li>
+                #<%= region.id %> -
+                <%= link_to region.name, [@continent, region] %>
+            </li>
+          <% end %>
+      </ul>
 
 </header>

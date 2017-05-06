@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :categories do
     resources :activities
   end
-  resources :continents
+  resources :continents do
+    resources :regions
+  end
 end

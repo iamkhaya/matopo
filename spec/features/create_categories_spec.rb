@@ -1,9 +1,10 @@
 require 'rails_helper'
 RSpec.feature 'Users can create new categories' do
-  scenario 'with valid attributes' do
+  before do
     visit '/categories'
     click_link 'New Category'
-
+  end
+  scenario 'with valid attributes' do
     fill_in 'Name', with: 'Adrenaline'
     fill_in 'Description', with: 'High risk activities'
     click_button 'Create Category'
@@ -11,8 +12,6 @@ RSpec.feature 'Users can create new categories' do
   end
 
   scenario 'with invalid attributes' do
-    visit '/categories'
-    click_link 'New Category'
     click_button 'Create Category'
 
     expect(page).to have_content 'Category has not been created.'

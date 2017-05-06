@@ -18,8 +18,8 @@
         <li>
             <a href="">Activities</a>
         </li>
-        <li>
-            <a href="">Categories</a>
+        <li class="<%= "active" if current_page?("/categories") %>">
+            <%= link_to "Categories", categories_path %>
         </li>
     </ul>
 
@@ -42,11 +42,11 @@
         <li>
             <a href="">Provinces</a>
         </li>
-        <li class="<%= " active" if current_page?(" /continents") %>">
+        <li class="<%= "active" if current_page?("/continents") %>">
             <%= link_to "Continents", continents_path %>
         </li>
-        <li>
-            <a href="">Regions</a>
+        <li class="<%= "active" if current_page?("/regions") %>">
+            <%= link_to "Regions", continents_path %>
         </li>
         <li>
             <a href="">Surburbs</a>
