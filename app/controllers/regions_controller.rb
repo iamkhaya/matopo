@@ -22,6 +22,26 @@ class RegionsController < ApplicationController
     end
   end
 
+  def edit
+    @region = Region.find(params[:id])
+  end
+
+  def update
+    if @region.update(region_params)
+      flash[:notice] = 'Region has been updated.'
+      redirect_to [@continent, @region]
+    else
+      flash.now[:alert] = 'Region has not been updated.'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @region.destroy
+    flash[:notice] = 'Region has been deleted.'
+    redirect_to @continent
+  end
+
   private
 
   def region_params

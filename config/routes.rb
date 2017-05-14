@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :continents do
     resources :regions
   end
+
+  resources :providers
 end

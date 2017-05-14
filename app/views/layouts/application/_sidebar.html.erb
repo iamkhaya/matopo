@@ -3,9 +3,8 @@
         <li class="<%= " active" if current_page?(" /") %>">
             <%= link_to "Home", root_path %>
         </li>
-
-        <li>
-            <a href="#">Providers</a>
+        <li class="<%= "active" if current_page?("/providers") %>">
+            <%= link_to "Providers", providers_path %>
         </li>
         <li>
             <a href="#">Offerings</a>

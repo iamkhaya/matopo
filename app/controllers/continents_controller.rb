@@ -14,7 +14,7 @@ class ContinentsController < ApplicationController
       redirect_to @continent
     else
       flash[:alert] = 'Continent has not been created.'
-      render 'index'
+      render 'new'
     end
   end
 
