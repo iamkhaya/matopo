@@ -17,7 +17,6 @@ RSpec.feature 'Users can create new providers' do
     fill_in 'City', with: 'Cape Town'
     fill_in 'Province', with: 'Western Cape'
     select 'South Africa', from: 'Country'
-    # fill_in 'Country', with: 'South Africa'
     fill_in 'Website', with: 'www.cycleafrica.com'
 
     click_button 'Create Provider'

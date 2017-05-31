@@ -18,6 +18,21 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def edit
+    @provider = Provider.find(params[:id])
+  end
+
+  def update
+    @provider = Provider.find(params[:id])
+    if @provider.update(provider_params)
+      flash[:notice] = 'Provider has been updated.'
+      redirect_to @provider
+    else
+      flash.now[:alert] = 'Provider has not been updated.'
+      render 'edit'
+    end
+  end
+
   def show
     @provider = Provider.find(params[:id])
   end
