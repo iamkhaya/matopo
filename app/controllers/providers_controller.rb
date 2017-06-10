@@ -33,6 +33,13 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def destroy
+    @provider = Provider.find(params[:id])
+    @provider.destroy
+    flash[:notice] = 'Provider has been deleted.'
+    redirect_to providers_path
+  end
+
   def show
     @provider = Provider.find(params[:id])
   end
