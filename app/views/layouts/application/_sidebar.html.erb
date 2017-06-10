@@ -1,0 +1,64 @@
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li class="<%= " active" if current_page?(" /") %>">
+            <%= link_to "Home", root_path %>
+        </li>
+        <li class="<%= "active" if current_page?("/providers") %>">
+            <%= link_to "Providers", providers_path %>
+        </li>
+        <li>
+            <a href="#">Offerings</a>
+        </li>
+        <li>
+            <a href="#">Reservations</a>
+        </li>
+    </ul>
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Activities</a>
+        </li>
+        <li class="<%= "active" if current_page?("/categories") %>">
+            <%= link_to "Categories", categories_path %>
+        </li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Trips</a>
+        </li>
+        <li>
+            <a href="">Reviews</a>
+        </li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Countries</a>
+        </li>
+        <li>
+            <a href="">Cities</a>
+        </li>
+        <li>
+            <a href="">Provinces</a>
+        </li>
+        <li class="<%= "active" if current_page?("/continents") %>">
+            <%= link_to "Continents", continents_path %>
+        </li>
+        <li class="<%= "active" if current_page?("/regions") %>">
+            <%= link_to "Regions", continents_path %>
+        </li>
+        <li>
+            <a href="">Surburbs</a>
+        </li>
+    </ul>
+
+    <ul class="nav nav-sidebar">
+        <li>
+            <a href="">Users</a>
+        </li>
+        <li>
+            <a href="">Permissions</a>
+        </li>
+    </ul>
+
+</div>
