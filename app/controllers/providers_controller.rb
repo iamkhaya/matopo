@@ -26,7 +26,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.find(params[:id])
     if @provider.update(provider_params)
       flash[:notice] = 'Provider has been updated.'
-      redirect_to @provider
+      redirect_to action: 'index'
     else
       flash.now[:alert] = 'Provider has not been updated.'
       render 'edit'
