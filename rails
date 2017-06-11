@@ -77,6 +77,8 @@ def new
 end
 ```
 
+
+
 10. Add the model, then run a migration
 
 ```ruby

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514133858) do
+ActiveRecord::Schema.define(version: 20170611174526) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20170514133858) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "offerings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "activity"
+    t.text     "description",      limit: 65535
+    t.string   "place"
+    t.string   "pricingperperson"
+    t.string   "inclusions"
+    t.string   "exclusions"
+    t.integer  "provider_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["provider_id"], name: "index_offerings_on_provider_id", using: :btree
   end
 
   create_table "providers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,6 +72,19 @@ ActiveRecord::Schema.define(version: 20170514133858) do
     t.index ["continent_id"], name: "index_regions_on_continent_id", using: :btree
   end
 
+  create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "activity"
+    t.text     "description",      limit: 65535
+    t.string   "place"
+    t.string   "pricingperperson"
+    t.string   "inclusions"
+    t.string   "exclusions"
+    t.integer  "provider_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["provider_id"], name: "index_tickets_on_provider_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -77,5 +103,7 @@ ActiveRecord::Schema.define(version: 20170514133858) do
   end
 
   add_foreign_key "activities", "categories"
+  add_foreign_key "offerings", "providers"
   add_foreign_key "regions", "continents"
+  add_foreign_key "tickets", "providers"
 end
