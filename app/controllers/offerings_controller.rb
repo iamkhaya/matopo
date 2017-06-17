@@ -1,5 +1,7 @@
 class OfferingsController < ApplicationController
   before_action :set_provider
+  before_action :set_offering, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @offerings = Offering.all
@@ -26,9 +28,13 @@ class OfferingsController < ApplicationController
     @provider = Provider.find(params[:provider_id])
   end
 
+  def set_offering
+    @offering = @provider.offerings.find(params[:id])
+  end
+
   def offering_params
     params.require(:offering).permit(:activity, :description, :place,
                                      :pricingperperson, :inclusions,
-                                     :exclusions, :provider)
+                                     :exclusions)
   end
 end

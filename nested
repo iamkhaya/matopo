@@ -55,3 +55,38 @@ end
 
 5. Generate the model
 rails g model ticket name:string description:text project:references
+
+6. Create the new file with its corresponding _form
+<header>
+<h1>
+New Ticket
+<small><%=</h1>
+</header>
+@project.name %></small>
+<%= render "form", project: @project, ticket: @ticket %>
+
+
+7. Create action in controller
+
+def create
+  @offering = @provider.offerings.build(offering_params)
+  if @offering.save
+    flash[:notice] = 'Offering has been created.'
+    redirect_to [@provider, @offering]
+  else
+    flash.now[:alert] = 'Offering has not been created.'
+    render 'new'
+  end
+end
+
+8.
+
+def set_ticket
+@ticket = @project.tickets.find(params[:id])
+end
+
+
+
+9. Add validations to model
+      validates :name, presence: true
+      validates :description, presence: true

@@ -1,0 +1,23 @@
+<header>
+  <h1>Provider: <%= @provider.name %></h1>
+</header>
+
+<header>
+  <h1><%= @offering.activity %></h1>
+</header>
+
+<p><%=simple_format(@offering.description) %></p>
+
+    <ul class="actions">
+        <li>
+          <li><%= link_to "Edit Offering", [:edit, @provider, @offering], class: "edit" %>
+        </li>
+        <li>
+            <%= link_to "Delete Offering", [@provider, @offering],
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this offering?" },
+                class: "delete"
+            %>
+        </li>
+    </ul>
+  </header>
