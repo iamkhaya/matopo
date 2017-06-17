@@ -2,7 +2,6 @@ class OfferingsController < ApplicationController
   before_action :set_provider
   before_action :set_offering, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @offerings = Offering.all
   end
@@ -19,6 +18,20 @@ class OfferingsController < ApplicationController
     else
       flash.now[:alert] = 'Offering has not been created.'
       render 'new'
+    end
+  end
+
+  def edit
+    @offering = Offering.find(params[:id])
+  end
+
+  def update
+    if @offering.update(offering_params)
+      flash[:notice] = 'Offering has been updated.'
+      redirect_to [@provider, @offering]
+    else
+      flash.now[:alert] = 'Offering has not been updated.'
+      render 'edit'
     end
   end
 
