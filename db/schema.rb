@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611174526) do
+ActiveRecord::Schema.define(version: 20170617213036) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -83,6 +83,20 @@ ActiveRecord::Schema.define(version: 20170611174526) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.index ["provider_id"], name: "index_tickets_on_provider_id", using: :btree
+  end
+
+  create_table "trips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "user_id"
+    t.integer  "number_of_adults"
+    t.integer  "number_of_infants"
+    t.integer  "number_of_children"
+    t.string   "city"
+    t.string   "country"
+    t.string   "region"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -1,0 +1,77 @@
+<header>
+    <h1>Trips</h1>
+
+    <ul class="actions">
+        <li>
+            <%= link_to "New Trip", new_trip_path, class: "new" %>
+        </li>
+    </header>
+    <div id="trips">
+        <centre>
+            <div class="table-responsive table-striped table-condensed">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Start date</th>
+                            <th>End Date</th>
+                            <th>User name</th>
+                            <th>City</th>
+                            <th>Region</th>
+                            <th>Country</th>
+                            <th># Adults</th>
+                            <th># Children</th>
+                            <th># Infants</th>
+                            <th>Manipulation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @trips.each do |trip| %>
+                        <tr>
+
+                            <td>
+                                <p><%=  trip.start_date %></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.end_date %></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.user_id %></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.number_of_adults%></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.number_of_children%></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.number_of_infants%></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.city %></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.region %></p>
+                            </td>
+                            <td>
+                                <p><%=  trip.country %></p>
+                            </td>
+                            <td>
+                                <!--<%= link_to "New Reservation", new_trip_reservation_path(trip), class: "new" %>-->
+
+                                <%= link_to "View Trip", trip_path(trip), class: "new" %>
+
+                                <%= link_to "Edit Trip", edit_trip_path(trip), class: "edit" %>
+
+                                <%= link_to "Delete Trip", trip_path(trip), method: :delete, data: { confirm: "Are you sure you want to delete this trip?" }, class: "delete" %>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+
+                </table>
+            </div>
+        </centre>
+
+    </div>

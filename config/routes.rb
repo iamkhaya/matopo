@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   resources :providers do
     resources :offerings
   end
+  resources :trips do
+    resources :reservations
+  end
+
 end
