@@ -35,6 +35,12 @@ class OfferingsController < ApplicationController
     end
   end
 
+  def destroy
+    @offering.destroy
+    flash[:notice] = 'Offering has been deleted.'
+    redirect_to @provider
+  end
+
   private
 
   def set_provider
