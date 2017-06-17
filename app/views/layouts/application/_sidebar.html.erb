@@ -6,17 +6,14 @@
         <li class="<%= "active" if current_page?("/providers") %>">
             <%= link_to "Providers", providers_path %>
         </li>
-        <li>
-            <a href="#">Offerings</a>
+        <li class="<%= "active" if current_page?("/offerings") %>">
+            <%= link_to "Offerings", root_path %>
         </li>
         <li>
             <a href="#">Reservations</a>
         </li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li>
-            <a href="">Activities</a>
-        </li>
         <li class="<%= "active" if current_page?("/categories") %>">
             <%= link_to "Categories", categories_path %>
         </li>

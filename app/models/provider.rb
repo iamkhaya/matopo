@@ -1,4 +1,6 @@
 class Provider < ApplicationRecord
+  has_many :offerings, dependent: :delete_all
+
   validates :name, presence: true
   validates :email_1, presence: true
   validates :email_2, presence: true

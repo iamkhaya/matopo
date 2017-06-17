@@ -1,0 +1,92 @@
+Nested Resource Example
+-----------------------
+
+1. create_offering_spec
+
+require "rails_helper"
+RSpec.feature "Users can create new tickets" do
+before do
+project = FactoryGirl.create(:project, name: "Internet Explorer")
+visit project_path(project)
+click_link "New Ticket"
+end
+scenario "with valid attributes" do
+fill_in "Name", with: "Non-standards compliance"
+fill_in "Description", with: "My pages are ugly!"
+click_button "Create Ticket"
+expect(page).to have_content "Ticket has been created."
+end
+scenario "whenclick_buttonproviding invalid"Create Ticket"
+attributes" do
+expect(page).to have_content "Ticket has not been created."
+expect(page).to have_content "Name can't be blank"
+expect(page).to have_content "Description can't be blank"
+end
+end
+
+2. Add Link to new nested resource on parent index
+<ul class="actions">
+<li><%= link_to "New Ticket", new_project_ticket_path(@project),
+class: "new" %></li>
+</ul>
+
+3. set the new action
+class OfferingsController < ApplicationController
+  before_action :set_provider
+
+  def index
+    @offerings = Offering.all
+  end
+
+  def new
+    @offering = @provider.offerings.build
+  end
+
+  private
+
+  def set_provider
+    @provider = Provider.find(params[:provider_id])
+  end
+end
+
+
+4. Add has many association to parent resource
+
+
+5. Generate the model
+rails g model ticket name:string description:text project:references
+
+6. Create the new file with its corresponding _form
+<header>
+<h1>
+New Ticket
+<small><%=</h1>
+</header>
+@project.name %></small>
+<%= render "form", project: @project, ticket: @ticket %>
+
+
+7. Create action in controller
+
+def create
+  @offering = @provider.offerings.build(offering_params)
+  if @offering.save
+    flash[:notice] = 'Offering has been created.'
+    redirect_to [@provider, @offering]
+  else
+    flash.now[:alert] = 'Offering has not been created.'
+    render 'new'
+  end
+end
+
+8.
+
+def set_ticket
+@ticket = @project.tickets.find(params[:id])
+end
+
+
+
+9. Add validations to model
+      validates :name, presence: true
+      validates :description, presence: true
