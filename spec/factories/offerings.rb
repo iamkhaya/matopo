@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :offering do
-    activity "MyString"
-    description "MyText"
-    place "MyString"
-    pricingperperson "MyString"
-    inclusions "MyString"
-    exclusions "MyString"
-    provider nil
+    activity 'Cycling'
+    description 'This is my cycle activity'
+    place 'Fish Hoek'
+    pricingperperson 299
+    inclusions 'All things nice'
+    exclusions 'All things rice'
   end
 end
