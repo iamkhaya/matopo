@@ -12,6 +12,10 @@
 <p> Region :<%= @trip.region %></p>
 <p> country: <%= @trip.country %></p>
 
+<header>
+    <h1>Reservations:
+</header>
+
 <ul class="actions">
 
     <li><%= link_to "Edit Trip", [:edit, @trip], class: "edit" %>
@@ -64,4 +68,14 @@
                  class: "delete"
              %>
         </li>
+    </ul>
+
+    <ul id="reservations">
+        <% @trip.reservations.each do |reservation| %>
+        <li>
+            #<%= reservation.id %>
+            -
+            <%= link_to reservation.user_id, [@trip, reservation] %>
+        </li>
+        <% end %>
     </ul>

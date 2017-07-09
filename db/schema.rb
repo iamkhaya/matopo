@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617213036) do
+ActiveRecord::Schema.define(version: 20170619200531) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -72,6 +72,19 @@ ActiveRecord::Schema.define(version: 20170617213036) do
     t.index ["continent_id"], name: "index_regions_on_continent_id", using: :btree
   end
 
+  create_table "reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "offering"
+    t.datetime "booking_date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "status"
+    t.integer  "trip_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["trip_id"], name: "index_reservations_on_trip_id", using: :btree
+  end
+
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activity"
     t.text     "description",      limit: 65535
@@ -119,5 +132,6 @@ ActiveRecord::Schema.define(version: 20170617213036) do
   add_foreign_key "activities", "categories"
   add_foreign_key "offerings", "providers"
   add_foreign_key "regions", "continents"
+  add_foreign_key "reservations", "trips"
   add_foreign_key "tickets", "providers"
 end

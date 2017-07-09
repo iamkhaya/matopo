@@ -1,4 +1,6 @@
 class Trip < ApplicationRecord
+  has_many :reservations, dependent: :delete_all
+
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :user_id, presence: true
