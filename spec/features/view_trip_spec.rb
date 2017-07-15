@@ -1,9 +1,14 @@
 require 'rails_helper'
 RSpec.feature 'Users can view trips' do
+  before do
+    @trip = FactoryGirl.create(:trip)
+    @user = FactoryGirl.create(:admin_user)
+    login_as @user
+    visit admin_trips_path
+    click_link 'View'
+  end
+
   scenario 'with the trip details' do
-    trip = FactoryGirl.create(:trip)
-    visit '/trips'
-    click_link 'View Trip'
-    expect(page.current_url).to eq trip_url(trip)
+    expect(page.current_url).to eq admin_trip_url(@trip)
   end
 end

@@ -1,14 +1,16 @@
 require 'rails_helper'
 RSpec.feature 'Users can delete activities' do
-  let(:category) { FactoryGirl.create(:category) }
-  let(:activity) { FactoryGirl.create(:activity, category: category) }
-
   before do
-    visit category_activity_path(category, activity)
+    @category = FactoryGirl.create(:category)
+    @activity = FactoryGirl.create(:activity, category: @category)
+    @user = FactoryGirl.create(:admin_user)
+    login_as @user
+    visit admin_activities_path
+    click_link 'Delete'
   end
+
   scenario 'successfully' do
-    click_link 'Delete Activity'
-    expect(page).to have_content 'Activity has been deleted.'
-    expect(page.current_url).to eq category_url(category)
+    expect(page).to have_content 'Activity was successfully destroyed.'
+    expect(page.current_url).to eq admin_activities_url
   end
 end

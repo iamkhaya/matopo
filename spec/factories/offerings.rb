@@ -6,5 +6,6 @@ FactoryGirl.define do
     pricingperperson 299
     inclusions 'All things nice'
     exclusions 'All things rice'
+    association :provider
   end
 end

@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:notice] = 'Category has been created.'
       redirect_to @category
     else
       flash[:alert] = 'Category has not been created.'

@@ -1,9 +1,11 @@
 require 'rails_helper'
 RSpec.feature 'Users can edit existing trips' do
   before do
-    FactoryGirl.create(:trip)
-    visit '/trips'
-    click_link 'Edit Trip'
+    @trip = FactoryGirl.create(:trip)
+    @user = FactoryGirl.create(:admin_user)
+    login_as @user
+    visit admin_trips_path
+    click_link 'Edit'
   end
 
   scenario 'with valid attributes' do
@@ -15,7 +17,6 @@ RSpec.feature 'Users can edit existing trips' do
     select 'August', from: 'trip_end_date_2i'
     select '8', from: 'trip_end_date_3i'
 
-    fill_in 'User', with: 1
     fill_in 'Number of adults', with: 5
     fill_in 'Number of infants', with: 1
     fill_in 'Number of children', with: 0
@@ -23,25 +24,16 @@ RSpec.feature 'Users can edit existing trips' do
     fill_in 'Region', with: 'Western Cape'
     select 'South Africa', from: 'Country'
     click_button 'Update Trip'
-    expect(page).to have_content 'Trip has been updated.'
+    expect(page).to have_content 'Trip was successfully updated.'
   end
 
   scenario 'with invalid attributes' do
-    fill_in 'User', with: ''
-    fill_in 'User', with: ''
     fill_in 'Number of adults', with: ''
     fill_in 'Number of infants', with: ''
     fill_in 'Number of children', with: ''
     fill_in 'City', with: ''
     fill_in 'Region', with: ''
     click_button 'Update Trip'
-    expect(page).to have_content 'Trip has not been updated.'
-    expect(page).to have_content "User can't be blank"
-    expect(page).to have_content "Number of adults can't be blank"
-    expect(page).to have_content "Number of infants can't be blank"
-    expect(page).to have_content "Number of children can't be blank"
-    expect(page).to have_content "Region can't be blank"
-    expect(page).to have_content "City can't be blank"
-    expect(page).to have_content "Country can't be blank"
+    expect(page).to have_content("can't be blank", count: 5)
   end
 end

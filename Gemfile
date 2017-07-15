@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+# Active Admin
+gem 'activeadmin'
 # Bootstrap Gemfile
 gem 'bootstrap-sass', '~> 3.3'
 # Use CoffeeScript for .coffee assets and views
@@ -18,6 +19,8 @@ gem 'font-awesome-rails', '~> 4.3'
 gem 'jbuilder', '~> 2.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Meta Request gem to make chrome rails_panel work
+gem 'meta_request'
 # MySql2 gem
 gem 'mysql2'
 # Use Puma as the app server
