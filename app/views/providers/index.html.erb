@@ -1,0 +1,90 @@
+<header>
+    <h1>Providers</h1>
+
+    <ul class="actions">
+        <li>
+            <%= link_to "New Provider", new_provider_path, class: "new" %>
+        </li>
+    </header>
+    <div id="providers">
+        <centre>
+            <div class="table-responsive table-striped table-condensed">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>name</th>
+                            <th>email_1</th>
+                            <th>email_2</th>
+                            <th>phone_1</th>
+                            <th>phone_2</th>
+                            <th>tax_number</th>
+                            <th>street_number</th>
+                            <th>street_name_1</th>
+                            <th>city</th>
+                            <th>province</th>
+                            <th>country</th>
+                            <th>website</th>
+                            <th>Manipulation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @providers.each do |provider| %>
+                        <tr>
+
+                            <td>
+                                <p><%=  provider.name %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.email_1 %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.email_2 %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.phone_1 %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.phone_2 %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.tax_number %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.street_number %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.street_name_1 %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.city %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.province %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.country %></p>
+                            </td>
+                            <td>
+                                <p><%=  provider.website %></p>
+                            </td>
+
+                            <td>
+                                <%= link_to "New Offering", new_provider_offering_path(provider), class: "new" %>
+
+                                <%= link_to "View Provider", provider_path(provider), class: "new" %>
+
+                                <%= link_to "Edit Provider", edit_provider_path(provider), class: "edit" %>
+
+                                <%= link_to "Delete Provider", provider_path(provider), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+
+                </table>
+            </div>
+        </centre>
+
+    </div>

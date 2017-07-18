@@ -1,0 +1,81 @@
+<header>
+    <h1>Trip:
+</header>
+
+<p> Start Date : <%= @trip.start_date %></p>
+<p>  End Date : <%= @trip.start_date %></p>
+<p> User : <%= @trip.user_id   %></p>
+<p> Number of Adults <%= @trip.number_of_adults %></p>
+<p> Number of Infants: <%= @trip.number_of_infants %></p>
+<p> Numberof Children: <%= @trip.number_of_children %></p>
+<p> Destination : <%= @trip.city %></p>
+<p> Region :<%= @trip.region %></p>
+<p> country: <%= @trip.country %></p>
+
+<header>
+    <h1>Reservations:
+</header>
+
+<ul class="actions">
+
+    <li><%= link_to "Edit Trip", [:edit, @trip], class: "edit" %>
+
+    <li>
+        <%= link_to "Delete Trip", [@trip],
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this trip?" },
+                class: "delete"
+            %>
+    </li>
+</ul>
+    </header>
+
+    <p>
+        Start Date :
+        <%= @trip.start_date %></p>
+    <p>
+        End Date :
+        <%= @trip.start_date %></p>
+    <p>
+        User :
+        <%= @trip.user_id   %></p>
+    <p>
+        Number of Adults
+        <%= @trip.number_of_adults %></p>
+    <p>
+        Number of Infants:
+        <%= @trip.number_of_infants %></p>
+    <p>
+        Numberof Children:
+        <%= @trip.number_of_children %></p>
+    <p>
+        Destination :
+        <%= @trip.city %></p>
+    <p>
+        Region :<%= @trip.region %></p>
+    <p>
+        country:
+        <%= @trip.country %></p>
+
+    <ul class="actions">
+
+        <li><%= link_to "Edit Trip", [:edit, @trip], class: "edit" %>
+
+        <li>
+            <%= link_to "Delete Trip", [@trip],
+                 method: :delete,
+                 data: { confirm: "Are you sure you want to delete this trip?" },
+                 class: "delete"
+             %>
+        </li>
+    </ul>
+
+    <ul id="reservations">
+        <% @trip.reservations.each do |reservation| %>
+        <li>
+            #<%= reservation.id %>
+            -
+            <%= link_to reservation.user_id, [@trip, reservation] %>
+        </li>
+        <% end %>
+    </ul>

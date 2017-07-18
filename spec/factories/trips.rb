@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :trip do
-    name 'My trip'
     start_date '2017-06-17'
     end_date '2017-06-17'
     user_id 'User ID'

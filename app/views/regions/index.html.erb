@@ -1,0 +1,51 @@
+<header>
+    <h1>Continents</h1>
+
+    <ul class="actions">
+        <li>
+            <%= link_to "New Region", new_continent_region_path, class: "new" %>
+        </li>
+    </header>
+    <div id="continents">
+      <centre>
+        <div class="table-responsive table-striped table-condensed">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Manipulation</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% @continents.each do |continent| %>
+                    <tr>
+
+                        <td>
+                            <p><%= link_to continent.id, continent %></p>
+                        </td>
+                        <td>
+                            <p><%= link_to continent.name, continent %></p>
+                        </td>
+                        <td>
+                          <%= link_to "View Continent", continent_path(continent), class: "new" %>
+
+                          <%= link_to "Edit Continent", edit_continent_path(continent), class: "edit" %>
+
+                        <%= link_to "Delete Continent", continent_path(continent),
+                                    method: :delete,
+                                    data: { confirm: "Are you sure you want to delete this continent?" },
+                                    class: "delete"
+                                %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+
+            </table>
+        </div>
+      </centre>
+
+    </div>

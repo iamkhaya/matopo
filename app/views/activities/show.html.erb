@@ -1,0 +1,23 @@
+<header>
+  <h1>Category: <%= @category.name %></h1>
+</header>
+
+<header>
+  <h1><%= @activity.name %></h1>
+</header>
+
+<p><%=simple_format(@activity.description) %></p>
+
+    <ul class="actions">
+        <li>
+          <li><%= link_to "Edit Activity", [:edit, @category, @activity], class: "edit" %>
+        </li>
+        <li>
+            <%= link_to "Delete Activity", [@category, @activity],
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this activity?" },
+                class: "delete"
+            %>
+        </li>
+    </ul>
+  </header>

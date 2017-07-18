@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :provider do
-    sequence(:name) { |n| "Cyclex #{n}" }
+    name 'CyleX'
     province 'Western Cape'
     country 'South Africa'
     email_1 'admin@cyclex.com'

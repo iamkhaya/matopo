@@ -1,6 +1,4 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
-
   def index
     @trips = Trip.all
   end
@@ -10,11 +8,10 @@ class TripsController < ApplicationController
   end
 
   def create
-    binding.pry
     @trip = Trip.new(trip_params)
     if @trip.save
       flash[:notice] = 'Trip has been created.'
-      redirect_to @trip
+      redirect_to action: 'index'
     else
       flash[:alert] = 'Trip has not been created.'
       render 'new'
@@ -48,17 +45,6 @@ class TripsController < ApplicationController
   end
 
   private
-
-  def category_params
-    params.require(:category).permit(:name, :description)
-  end
-
-  def set_trip
-    @trip = Trip.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = 'The trip you were looking for could not be found.'
-    redirect_to trips_path
-  end
 
   def trip_params
     params.require(:trip).permit(:start_date,
