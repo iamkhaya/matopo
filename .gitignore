@@ -23,3 +23,8 @@
 # Coverage generate files
 coverage/*
 architecture/*
+
+# Mac Desktop files
+.DS_Store
+
+config/database.yml
