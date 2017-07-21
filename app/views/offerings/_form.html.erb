@@ -1,10 +1,11 @@
 <%= simple_form_for( [provider, offering]) do |f| %>
-  <%= f.input :activity %>
+
+  <%= f.input :activity, collection: Activity.all %>
   <%= f.input :description %>
   <%= f.input :place %>
-  <%= f.input :pricingperperson %>
-  <%= f.input :inclusions %>
-  <%= f.input :exclusions %>
-  
+  <%= f.input :pricingperperson, label: 'Price per Person' %>
+  <%= f.input :inclusions,label: 'Whats included'%>
+  <%= f.input :exclusions, label: 'Whats not included' %>
+
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>

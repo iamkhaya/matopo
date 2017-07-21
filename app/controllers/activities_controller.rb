@@ -12,8 +12,8 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = @category.activities.build(activity_params)
-
-    if @activity.save
+    #binding.pry
+    if @activity.save!
       flash[:notice] = 'Activity has been created.'
       redirect_to [@category, @activity]
     else

@@ -52,7 +52,7 @@ class OfferingsController < ApplicationController
   end
 
   def offering_params
-    params.require(:offering).permit(:activity, :description, :place,
+    params.require(:offering).permit(:activity_id, :description, :place,
                                      :pricingperperson, :inclusions,
                                      :exclusions)
   end
