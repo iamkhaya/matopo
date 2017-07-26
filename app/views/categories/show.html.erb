@@ -6,7 +6,7 @@
 
     <ul class="actions">
         <li>
-            <%= link_to "Add Activity", new_category_activity_path(@category), class: "new" %></p>
+            <%= link_to "Add Activity", new_category_path(@category), class: "new" %></p>
     </li>
     <li>
         <%= link_to "Edit Category", edit_category_path(@category), class: "edit" %>
@@ -20,12 +20,5 @@
     </li>
 </ul>
 
-<ul id="activities">
-    <% @category.activities.each do |activity| %>
-      <li>
-          #<%= activity.id %> -
-          <%= link_to activity.name, [@category, activity] %>
-      </li>
-    <% end %>
-</ul>
-</header<
+
+</header>

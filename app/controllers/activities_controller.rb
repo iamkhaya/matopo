@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  before_action :set_category
+  before_action :set_category, only: [:create]
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,15 +7,14 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @activity = @category.activities.build
+    @activity = Activity.new
   end
 
   def create
     @activity = @category.activities.build(activity_params)
-    #binding.pry
     if @activity.save!
       flash[:notice] = 'Activity has been created.'
-      redirect_to [@category, @activity]
+      redirect_to activity_path(@activity)
     else
       flash.now[:alert] = 'Activity has not been created.'
       render 'new'
@@ -37,9 +36,13 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy
-    flash[:notice] = 'Activity has been deleted.'
-    redirect_to @category
+    if @activity.destroy
+      flash[:notice] = 'Activity has been deleted.'
+      redirect_to @activity
+    else
+      flash.now[:alert] = 'Activity has not been deleted.'
+      redirect_to activities_path
+    end
   end
 
   def show; end
@@ -47,14 +50,14 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description)
+    params.require(:activity).permit(:name, :description, :category_ids=>[])
   end
 
   def set_activity
-    @activity = @category.activities.find(params[:id])
+    @activity = Activity.find(params[:id])
   end
 
   def set_category
-    @category = Category.find(params[:category_id])
+    @category = Category.new
   end
 end

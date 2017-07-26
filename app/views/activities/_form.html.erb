@@ -1,5 +1,7 @@
-<%= simple_form_for( [category, activity]) do |f| %>
+<%= simple_form_for @activity do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.association :categories %>
+
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>

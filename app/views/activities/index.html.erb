@@ -1,14 +1,58 @@
 <header>
-    <h3>Activities</h3>
+  <h3>Activities</h3>
 
-<ul class="actions">
-  <li>
-<%= link_to "New Activity", new_category_activity_path, class: "new" %>
-</li>
+  <ul class="actions">
+    <li>
+      <%= link_to "New  Activity", new_activity_path, class: "new" %>
+    </li>
+  </ul>
 </header>
-<div id="categories">
-    <% @activities.each do |activity| %>
-      <h2><%= activity.name %></h2>
-      <p><%= activity.description %></p>
-    <% end %>
+<div id="activities">
+  <centre>
+    <div class="table-responsive table-striped table-condensed">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Categories</th>
+            <th>Manipulation</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @activities.each do |activity| %>
+          <tr>
+            <td>
+              <p><%=  activity.id %></p>
+            </td>
+            <td>
+              <p><%=  activity.name %></p>
+            </td>
+            <td>
+            <% activity.categories.each do |category| %>
+              <%=  category.name %> &nbsp
+            <% end%>
+          </td>
+            <td>
+              <p><%=  activity.description %></p>
+            </td>
+
+            <td>
+              <%= link_to "View Activity", activity_path(activity), class: "new" %>
+
+              <%= link_to "Edit Activity", edit_activity_path(activity), class: "edit" %>
+
+              <%= link_to "Delete Activity", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
+            </td>
+          </tr>
+        </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+  </div>
+</centre>
+
 </div>
