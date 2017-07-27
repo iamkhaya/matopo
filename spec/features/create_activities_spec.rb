@@ -20,6 +20,6 @@ RSpec.feature 'Users can create new activities' do
     expect(page).to have_content 'Activity has not been created.'
     expect(page).to have_content "Name can't be blank"
     expect(page).to have_content "Description can't be blank"
-    expect(page).to have_content "Category can't be blank"
+    expect(page).to have_content "Categories can't be blank"
   end
 end

@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = @category.activities.build(activity_params)
-    if @activity.save!
+    if @activity.save
       flash[:notice] = 'Activity has been created.'
       redirect_to activity_path(@activity)
     else
