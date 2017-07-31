@@ -1,5 +1,5 @@
 class OfferingsController < ApplicationController
-  before_action :set_provider
+  before_action :set_provider, only: [:create]
   before_action :set_offering, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,14 +7,14 @@ class OfferingsController < ApplicationController
   end
 
   def new
-    @offering = @provider.offerings.build
+    @offering = Offering.new
   end
 
   def create
     @offering = @provider.offerings.build(offering_params)
     if @offering.save
       flash[:notice] = 'Offering has been created.'
-      redirect_to [@provider, @offering]
+      redirect_to offering_path(@offering)
     else
       flash.now[:alert] = 'Offering has not been created.'
       render 'new'
@@ -43,17 +43,27 @@ class OfferingsController < ApplicationController
 
   private
 
-  def set_provider
-    @provider = Provider.find(params[:provider_id])
+  def offering_params
+    params.require(:offering).permit(:provider_id,
+                                     :description,
+                                     :place,
+                                     :pricingperperson,
+                                     :inclusions,
+                                     :exclusions,
+                                     :activity_id)
   end
+
 
   def set_offering
-    @offering = @provider.offerings.find(params[:id])
+    @offering = Offering.find(params[:id])
   end
 
-  def offering_params
-    params.require(:offering).permit(:activity_id, :description, :place,
-                                     :pricingperperson, :inclusions,
-                                     :exclusions)
+  def set_provider
+    if params[:offering][:provider_id] != ""
+      @provider = Provider.find(params[:offering][:provider_id])
+    else
+      @provider = Provider.new
+    end
   end
+
 end

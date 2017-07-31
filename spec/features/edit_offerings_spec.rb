@@ -1,10 +1,10 @@
 require 'rails_helper'
 RSpec.feature 'Users can edit existing offerings' do
-  let(:provider) { FactoryGirl.create(:provider) }
-  let(:offering) { FactoryGirl.create(:offering, provider: provider) }
-
   before do
-    visit provider_offering_path(provider, offering)
+    provider = FactoryGirl.create(:provider)
+
+    offering = FactoryGirl.create(:offering, provider: provider)
+    visit offerings_path
     click_link 'Edit Offering'
   end
 

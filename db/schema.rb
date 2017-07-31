@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725173305) do
+ActiveRecord::Schema.define(version: 20170730115250) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "description", limit: 65535
     t.integer  "category_id"
+    t.integer  "offering_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["category_id"], name: "index_activities_on_category_id", using: :btree
+    t.index ["offering_id"], name: "index_activities_on_offering_id", using: :btree
   end
 
   create_table "activities_categories", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,22 +37,17 @@ ActiveRecord::Schema.define(version: 20170725173305) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "continents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "offerings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "activity"
     t.text     "description",      limit: 65535
     t.string   "place"
     t.string   "pricingperperson"
     t.text     "inclusions",       limit: 65535
     t.text     "exclusions",       limit: 65535
     t.integer  "provider_id"
+    t.integer  "activity_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.index ["activity_id"], name: "index_offerings_on_activity_id", using: :btree
     t.index ["provider_id"], name: "index_offerings_on_provider_id", using: :btree
   end
 
@@ -69,14 +66,6 @@ ActiveRecord::Schema.define(version: 20170725173305) do
     t.string   "website"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-  end
-
-  create_table "regions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "continent_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["continent_id"], name: "index_regions_on_continent_id", using: :btree
   end
 
   create_table "reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -124,7 +113,6 @@ ActiveRecord::Schema.define(version: 20170725173305) do
   end
 
   add_foreign_key "activities", "categories"
-  add_foreign_key "offerings", "providers"
-  add_foreign_key "regions", "continents"
+  add_foreign_key "activities", "offerings", on_delete: :cascade
   add_foreign_key "reservations", "trips"
 end

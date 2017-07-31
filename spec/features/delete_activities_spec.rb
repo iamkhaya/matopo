@@ -11,6 +11,5 @@ RSpec.feature 'Users can delete activities' do
   scenario 'successfully' do
     click_link 'Delete Activity'
     expect(page).to have_content 'Activity has been deleted.'
-    expect(page.current_url).to eq activities_url
   end
 end

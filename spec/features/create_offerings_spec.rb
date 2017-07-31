@@ -2,26 +2,26 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new offerings' do
   before do
-    provider = FactoryGirl.create :provider
-
-    visit providers_path(provider)
+    provider = FactoryGirl.create(:provider, name: 'Cyclix')
+    activity = FactoryGirl.create(:activity, name: 'Cycle Tours')
+    visit offerings_path
     click_link 'New Offering'
   end
   scenario 'with valid attributes' do
-    fill_in 'Activity', with: 'Cycle Tours'
+    # binding.pry
+    select 'Cyclix', from: 'Provider'
+    select 'Cycle Tours', from: 'Activity'
     fill_in 'Description', with: 'Cycle Around Town'
     fill_in 'Place', with: 'Here'
-    fill_in 'Pricingperperson', with: 200
-    fill_in 'Inclusions', with: 'Adrenaline'
-    fill_in 'Exclusions', with: 'No Adrenaline'
+    fill_in 'Price per Person', with: 200
+    fill_in 'Whats included', with: 'Adrenaline'
+    fill_in 'Whats not included', with: 'No Adrenaline'
     click_button 'Create Offering'
   end
-
 
   scenario 'with invalid attributes' do
     click_button 'Create Offering'
     expect(page).to have_content 'Offering has not been created.'
-    expect(page).to have_content "Activity can't be blank"
     expect(page).to have_content "Description can't be blank"
     expect(page).to have_content "Place can't be blank"
     expect(page).to have_content "Pricingperperson can't be blank"

@@ -1,6 +1,7 @@
-<%= simple_form_for( [provider, offering]) do |f| %>
+<%= simple_form_for(@offering) do |f| %>
 
-  <%= f.input :activity, collection: Activity.all %>
+  <%= f.association :provider %>
+  <%= f.input :activity_id, collection: Activity.all%>
   <%= f.input :description %>
   <%= f.input :place %>
   <%= f.input :pricingperperson, label: 'Price per Person' %>

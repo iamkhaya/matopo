@@ -3,7 +3,7 @@
 
     <ul class="actions">
         <li>
-            <%= link_to "New Offering", new_provider_offering_path(@provider), class: "new" %>
+            <%= link_to "New Offering", new_offering_path, class: "new" %>
         </li>
     </header>
     <div id="offerings">
@@ -32,7 +32,7 @@
                                 <p><%=  offering.provider %></p>
                             </td>
                             <td>
-                                <p><%=  offering.activity %></p>
+                                <p><%=  Activity.find(offering.activity_id).name %></p>
                             </td>
                             <td>
                                 <p><%=  offering.description %></p>
@@ -65,4 +65,3 @@
         </centre>
 
     </div>
-                                                                          Z

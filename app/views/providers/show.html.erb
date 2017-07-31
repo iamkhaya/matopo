@@ -1,29 +1,65 @@
 <header>
-    <h3>Provider:
-        <%= @provider.name %></h3>
+  <h3>Provider:
+    <%= @provider.name %></h3>
 </header>
+
+<p>
+  <b>Name:&nbsp;</b>
+  <%=@provider.name%>
+</p>
+<p>
+  <b>Email:&nbsp;</b>
+  <%=@provider.email_1%>
+</p>
+<p>
+  <b>Alternative Email:&nbsp;</b>
+  <%= @provider.email_2%></p>
+<p>
+  <b>Phone:&nbsp;</b>
+  <%= @provider.phone_1%>
+</p>
+<p>
+   <b>Phone 2:&nbsp;</b>
+   <%= @provider.phone_2  %>
+ </p>
+<p>
+  <b>Tax Number:&nbsp;</b>
+  <%= @provider.tax_number %>
+</p>
+<p>
+  <b>Street Number:&nbsp;</b>
+  <%= @provider.street_number  %>
+</p>
+<p>
+  <b>Street Number:&nbsp;</b>
+  <%= @provider.street_name_1  %>
+</p>
+<p>
+  <b>City:&nbsp;</b>
+  <%= @provider.city  %>
+</p>
+<p>
+  <b>Province:&nbsp;</b>
+  <%= @provider.province  %>
+</p>
+<p>
+  <b>Country:&nbsp;</b>
+  <%= @provider.country  %>
+</p>
+<p>
+  <b>Website:&nbsp;</b>
+  <%= @provider.website  %>
+</p>
 
 <ul class="actions">
-    <li>
-    <li><%= link_to "Edit Provider", [:edit, @provider], class: "edit" %>
-    </li>
-    <li>
-        <%= link_to "Delete Provider", [@provider],
-                method: :delete,
-                data: { confirm: "Are you sure you want to delete this provider?" },
-                class: "delete"
-            %>
-    </li>
+  <li>
+    <%= link_to "Edit Provider", [:edit, @provider], class: "edit" %>
+  </li>
+  <li>
+    <%= link_to "Delete Provider", [@provider],
+        method: :delete,
+        data: { confirm: "Are you sure you want to delete this provider?" },
+        class: "delete"
+    %>
+  </li>
 </ul>
-
-<ul id="offerings">
-    <% @provider.offerings.each do |offering| %>
-    <li>
-        #<%= offering.id %>
-        -
-        <%= link_to offering.activity, [@provider, offering] %>
-    </li>
-    <% end %>
-</ul>
-
-</header>

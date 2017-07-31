@@ -1,19 +1,23 @@
 <header>
-  <h3>Provider: <%= @provider.name %></h3>
+  <h3>Provider: <%= @offering.provider.name %></h3>
 </header>
 
-<header>
-  <h3><%= @offering.activity %></h3>
-</header>
+<p><b>Description:&nbsp;</b><%= @offering.description %></p>
+<p><b>Activity:&nbsp;</b><%= @offering.activity_id %></p>
+<p><b>Description:&nbsp;</b><%= @offering.description %></p>
+<p><b>Place:&nbsp;</b><%= @offering.place %></p>
+<p><b>Cost per Person:&nbsp;</b><%= @offering.pricingperperson %></p>
+<p><b>Inclusions:&nbsp;</b><%= @offering.inclusions %></p>
+<p><b>Exclusions:&nbsp;</b><%= @offering.exclusions  %></p>
 
 <p><%=simple_format(@offering.description) %></p>
 
     <ul class="actions">
         <li>
-          <li><%= link_to "Edit Offering", [:edit, @provider, @offering], class: "edit" %>
+          <li><%= link_to "Edit Offering", edit_provider_path, class: "edit" %>
         </li>
         <li>
-            <%= link_to "Delete Offering", [@provider, @offering],
+            <%= link_to "Delete Offering", [@offering],
                 method: :delete,
                 data: { confirm: "Are you sure you want to delete this offering?" },
                 class: "delete"

@@ -4,7 +4,7 @@ class CreateActivities < ActiveRecord::Migration[5.0]
       t.string :name
       t.text :description
       t.references :category, foreign_key: true
-
+      t.belongs_to :offering, index: true
       t.timestamps
     end
   end

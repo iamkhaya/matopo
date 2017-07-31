@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
+    binding.pry
     @activity = @category.activities.build(activity_params)
     if @activity.save
       flash[:notice] = 'Activity has been created.'
@@ -50,7 +51,9 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :description, :category_ids=>[])
+    params.require(:activity).permit(:name,
+                                     :description,
+                                     :category_ids=>[])
   end
 
   def set_activity
