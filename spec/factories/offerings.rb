@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :offering do
-    activity 'Cycling'
+    
     description 'This is my cycle activity'
     place 'Fish Hoek'
     pricingperperson 299

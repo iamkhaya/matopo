@@ -38,7 +38,7 @@ class OfferingsController < ApplicationController
   def destroy
     @offering.destroy
     flash[:notice] = 'Offering has been deleted.'
-    redirect_to @provider
+    redirect_to offerings_path
   end
 
   private
