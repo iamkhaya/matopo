@@ -13,6 +13,7 @@ RSpec.feature 'Users can create new trips' do
     select 'July', from: 'trip_end_date_2i'
     select '8', from: 'trip_end_date_3i'
 
+    fill_in 'Name', with: 'My Belarus Trip'
     fill_in 'User', with: 1
     fill_in 'Number of adults', with: 2
     fill_in 'Number of infants', with: 1

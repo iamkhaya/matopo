@@ -26,5 +26,5 @@ architecture/*
 
 # Mac Desktop files
 .DS_Store
-
+.idea/
 config/database.yml

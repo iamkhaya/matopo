@@ -15,6 +15,7 @@ RSpec.feature 'Users can edit existing trips' do
     select 'August', from: 'trip_end_date_2i'
     select '8', from: 'trip_end_date_3i'
 
+    fill_in 'Name', with: 'My Edited Trip'
     fill_in 'User', with: 1
     fill_in 'Number of adults', with: 5
     fill_in 'Number of infants', with: 1
@@ -27,7 +28,7 @@ RSpec.feature 'Users can edit existing trips' do
   end
 
   scenario 'with invalid attributes' do
-    fill_in 'User', with: ''
+    fill_in 'Name', with: ''
     fill_in 'User', with: ''
     fill_in 'Number of adults', with: ''
     fill_in 'Number of infants', with: ''
