@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804165031) do
+ActiveRecord::Schema.define(version: 20170806082656) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20170804165031) do
     t.integer  "activity_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "name"
     t.index ["activity_id"], name: "index_offerings_on_activity_id", using: :btree
     t.index ["provider_id"], name: "index_offerings_on_provider_id", using: :btree
   end
@@ -70,14 +71,15 @@ ActiveRecord::Schema.define(version: 20170804165031) do
 
   create_table "reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.integer  "offering"
     t.datetime "booking_date"
     t.time     "start_time"
     t.time     "end_time"
     t.string   "status"
     t.integer  "trip_id"
+    t.integer  "offering_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["offering_id"], name: "index_reservations_on_offering_id", using: :btree
     t.index ["trip_id"], name: "index_reservations_on_trip_id", using: :btree
   end
 
@@ -115,5 +117,4 @@ ActiveRecord::Schema.define(version: 20170804165031) do
 
   add_foreign_key "activities", "categories"
   add_foreign_key "activities", "offerings", on_delete: :cascade
-  add_foreign_key "reservations", "trips"
 end

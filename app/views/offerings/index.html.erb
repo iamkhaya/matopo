@@ -14,6 +14,7 @@
                         <tr>
                             <th>#</th>
                             <th>Provider</th>
+                            <th>Name</th>
                             <th>Activity</th>
                             <th>Description</th>
                             <th>Place</th>
@@ -30,6 +31,9 @@
 
                             <td>
                                 <p><%=  offering.provider %></p>
+                            </td>
+                            <td>
+                                <p><%=  offering.name %></p>
                             </td>
                             <td>
                                 <p><%=  Activity.find(offering.activity_id).name %></p>

@@ -45,6 +45,7 @@ class OfferingsController < ApplicationController
 
   def offering_params
     params.require(:offering).permit(:provider_id,
+                                     :name,
                                      :description,
                                      :place,
                                      :pricingperperson,
@@ -53,17 +54,15 @@ class OfferingsController < ApplicationController
                                      :activity_id)
   end
 
-
   def set_offering
     @offering = Offering.find(params[:id])
   end
 
   def set_provider
-    if params[:offering][:provider_id] != ""
-      @provider = Provider.find(params[:offering][:provider_id])
-    else
-      @provider = Provider.new
-    end
+    @provider = if params[:offering][:provider_id] != ''
+                  Provider.find(params[:offering][:provider_id])
+                else
+                  Provider.new
+                end
   end
-
 end

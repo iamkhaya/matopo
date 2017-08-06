@@ -1,6 +1,7 @@
 <%= simple_form_for(@offering) do |f| %>
 
   <%= f.association :provider %>
+  <%= f.input :name %>
   <%= f.input :activity_id, collection: Activity.all%>
   <%= f.input :description %>
   <%= f.input :place %>

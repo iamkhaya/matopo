@@ -1,6 +1,8 @@
-<%= simple_form_for( [trip, reservation]) do |f| %>
+<%= simple_form_for(@reservation) do |f| %>
+  <%= f.association :trip %>
+  
   <%= f.input :user_id %>
-  <%= f.input :offering %>
+  <%= f.input :offering_id, collection: Offering.all%>
   <%= f.input :booking_date %>
   <%= f.input :start_time %>
   <%= f.input :end_time %>

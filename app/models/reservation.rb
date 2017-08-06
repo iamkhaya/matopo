@@ -1,5 +1,6 @@
 class Reservation < ApplicationRecord
   belongs_to :trip
+  belongs_to :offering
 
   validates :booking_date, presence: true
   validates :start_time, presence: true

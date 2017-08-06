@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.feature 'Users can view reservations' do
+RSpec.feature 'Users can delete reservations' do
   before do
     trip = FactoryGirl.create(:trip)
     provider = FactoryGirl.create(:provider)
@@ -8,10 +8,10 @@ RSpec.feature 'Users can view reservations' do
     @reservation = FactoryGirl.create(:reservation, offering: offering, trip: trip)
 
     visit reservations_path(@reservation)
-    click_link 'View Reservation'
   end
-
-  scenario 'for a given reservation' do 
-    expect(page.current_url).to eq reservation_url(@reservation)
+  scenario 'successfully' do
+    click_link 'Delete Reservation'
+    expect(page).to have_content 'Reservation has been deleted.'
+    expect(page.current_url).to eq reservations_url
   end
 end
