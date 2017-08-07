@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new activities' do
   before do
+    login_as(FactoryGirl.create(:user, :admin))
+
     category = FactoryGirl.create(:category, name: 'Adrenaline')
     visit activities_path
     click_link 'New Activity'
