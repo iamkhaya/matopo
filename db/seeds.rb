@@ -19,12 +19,12 @@
 #        email_2: 'help@cyclex.com',
 #        phone_1: 123_456_789,
 #        phone_2: 987_654_321,
- #       tax_number: 456_123,
-  #      street_number: 301,
-   #     street_name_1: 'Britton Avenue',
-    #    city: 'Cape Town',
-    #    website: 'www.cyclex.com'
-  #  }])
+#       tax_number: 456_123,
+#      street_number: 301,
+#     street_name_1: 'Britton Avenue',
+#    city: 'Cape Town',
+#    website: 'www.cyclex.com'
+#  }])
 
 # offerings = Offering.create([{
 #    description: 'This is my cycle activity',
@@ -57,15 +57,14 @@
 #    trip: 1
 # }])
 
-unless User.exists?(email: "admin@matopo.com")
-  User.create!( email: "admin@matopo.com",
-                password: "p455word",
-                admin: true)
+unless User.exists?(email: 'admin@matopo.com')
+  User.create!(email: 'admin@matopo.com',
+               password: 'p455word',
+               admin: true)
 end
 
-
-unless User.exists?(email: "customer@matopo.com")
-  User.create!( email: "customer@matopo.com",
-                password: "p455word",
-                admin: true)
+unless User.exists?(email: 'customer@matopo.com')
+  User.create!(email: 'customer@matopo.com',
+               password: 'p455word',
+               admin: true)
 end
