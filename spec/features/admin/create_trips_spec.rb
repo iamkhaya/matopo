@@ -1,42 +1,34 @@
 require 'rails_helper'
-RSpec.feature 'Users can edit existing trips' do
+RSpec.feature 'Users can create new trips' do
   before do
-    FactoryGirl.create(:trip)
+    login_as(FactoryGirl.create(:user, :admin))
     visit '/trips'
-    click_link 'Edit Trip'
+    click_link 'New Trip'
   end
-
   scenario 'with valid attributes' do
     select '2017', from: 'trip_start_date_1i'
-    select 'July', from: 'trip_start_date_2i'
+    select 'June', from: 'trip_start_date_2i'
     select '30', from: 'trip_start_date_3i'
 
     select '2017', from: 'trip_end_date_1i'
-    select 'August', from: 'trip_end_date_2i'
+    select 'July', from: 'trip_end_date_2i'
     select '8', from: 'trip_end_date_3i'
 
-    fill_in 'Name', with: 'My Edited Trip'
+    fill_in 'Name', with: 'My Belarus Trip'
     fill_in 'User', with: 1
-    fill_in 'Number of adults', with: 5
+    fill_in 'Number of adults', with: 2
     fill_in 'Number of infants', with: 1
     fill_in 'Number of children', with: 0
     fill_in 'City', with: 'Cape Town'
     fill_in 'Region', with: 'Western Cape'
     select 'South Africa', from: 'Country'
-    click_button 'Update Trip'
-    expect(page).to have_content 'Trip has been updated.'
+    click_button 'Create Trip'
+    expect(page).to have_content 'Trip has been created.'
   end
 
   scenario 'with invalid attributes' do
-    fill_in 'Name', with: ''
-    fill_in 'User', with: ''
-    fill_in 'Number of adults', with: ''
-    fill_in 'Number of infants', with: ''
-    fill_in 'Number of children', with: ''
-    fill_in 'City', with: ''
-    fill_in 'Region', with: ''
-    click_button 'Update Trip'
-    expect(page).to have_content 'Trip has not been updated.'
+    click_button 'Create Trip'
+    expect(page).to have_content 'Trip has not been created.'
     expect(page).to have_content "User can't be blank"
     expect(page).to have_content "Number of adults can't be blank"
     expect(page).to have_content "Number of infants can't be blank"

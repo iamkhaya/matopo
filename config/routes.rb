@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :offerings, only: [:new, :create, :edit, :update, :destroy]
     resources :providers, only: [:new, :create, :edit, :update, :destroy]
+    resources :trips, only: [:new, :create, :edit, :update, :destroy]
   end
   root 'categories#index'
   devise_for :users

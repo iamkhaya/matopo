@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @trip]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :user_id%>
+  <%= f.input :number_of_adults %>
+  <%= f.input :number_of_infants %>
+  <%= f.input :number_of_children %>
+  <%= f.input :city %>
+  <%= f.input :region %>
+  <%= f.input :country %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
