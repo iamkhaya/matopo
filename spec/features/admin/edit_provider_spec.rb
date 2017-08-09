@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Users can edit existing providers' do
   before do
+    login_as(FactoryGirl.create(:user, :admin))
     FactoryGirl.create :provider
     visit '/providers'
     click_link 'Edit Provider'

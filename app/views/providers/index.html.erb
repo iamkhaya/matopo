@@ -3,7 +3,7 @@
 
     <ul class="actions">
         <li>
-            <%= link_to "New Provider", new_provider_path, class: "new" %>
+            <%= link_to "New Provider", new_admin_provider_path, class: "new" %>
         </li>
     </header>
     <div id="providers">
@@ -75,9 +75,9 @@
 
                                 <%= link_to "View Provider", provider_path(provider), class: "new" %>
 
-                                <%= link_to "Edit Provider", edit_provider_path(provider), class: "edit" %>
+                                <%= link_to "Edit Provider", edit_admin_provider_path(provider), class: "edit" %>
 
-                                <%= link_to "Delete Provider", provider_path(provider), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
+                                <%= link_to "Delete Provider", admin_provider_path(provider), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
                             </td>
                         </tr>
                         <% end %>

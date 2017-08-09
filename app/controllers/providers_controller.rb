@@ -3,41 +3,8 @@ class ProvidersController < ApplicationController
     @providers = Provider.all
   end
 
-  def new
-    @provider = Provider.new
-  end
-
-  def create
-    @provider = Provider.new(provider_params)
-    if @provider.save
-      flash[:notice] = 'Provider has been created.'
-      redirect_to action: 'index'
-    else
-      flash[:alert] = 'Provider has not been created.'
-      render 'new'
-    end
-  end
-
   def edit
     @provider = Provider.find(params[:id])
-  end
-
-  def update
-    @provider = Provider.find(params[:id])
-    if @provider.update(provider_params)
-      flash[:notice] = 'Provider has been updated.'
-      redirect_to action: 'index'
-    else
-      flash.now[:alert] = 'Provider has not been updated.'
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @provider = Provider.find(params[:id])
-    @provider.destroy
-    flash[:notice] = 'Provider has been deleted.'
-    redirect_to providers_path
   end
 
   def show
