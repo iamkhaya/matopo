@@ -6,6 +6,7 @@ RSpec.feature 'Users can create reservations' do
     provider = FactoryGirl.create(:provider)
     activity = FactoryGirl.create(:activity, id: 1, name: 'Cycle Tours')
     offering = FactoryGirl.create(:offering, provider: provider, activity_id:1 )
+    login_as(FactoryGirl.create(:user, :admin))
     visit reservations_path
     click_link 'New Reservation'
   end
