@@ -1,0 +1,7 @@
+<%= simple_form_for ([:admin, @activity]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.association :categories %>
+
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
