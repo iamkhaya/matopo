@@ -17,6 +17,20 @@ class Admin::ActivitiesController < Admin::ApplicationController
     end
   end
 
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    if @activity.update(activity_params)
+      flash[:notice] = 'Activity has been updated.'
+      redirect_to [@category, @activity]
+    else
+      flash.now[:alert] = 'Activity has not been updated.'
+      render 'edit'
+    end
+  end
+
   def destroy
     if @activity.destroy
       flash[:notice] = 'Activity has been deleted.'
@@ -32,9 +46,9 @@ class Admin::ActivitiesController < Admin::ApplicationController
   def activity_params
     params.require(:activity).permit(:name,
                                      :description,
-                                     :category_ids=>[])
+                                     category_ids: [])
   end
-  
+
   def set_activity
     @activity = Activity.find(params[:id])
   end

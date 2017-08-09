@@ -12,7 +12,9 @@
 
 <ul class="actions">
     <li>
-      <li><%= link_to "Edit Activity", [:edit, @category, @activity], class: "edit" %>
+      <li><%= link_to "Edit Activity",
+              edit_admin_activity_path(@activity),
+              class: "edit" %>
     </li>
     <li>
         <%= link_to "Delete Activity", admin_activity_path(@activity),

@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new offerings' do
   before do
+    login_as(FactoryGirl.create(:user, :admin))
     provider = FactoryGirl.create(:provider, name: 'Cyclix')
     activity = FactoryGirl.create(:activity, name: 'Cycle Tours')
     visit offerings_path
     click_link 'New Offering'
   end
   scenario 'with valid attributes' do
-    # binding.pry
     select 'Cyclix', from: 'Provider'
     select 'Cycle Tours', from: 'Activity'
     fill_in 'Description', with: 'Cycle Around Town'

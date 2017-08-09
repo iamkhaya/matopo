@@ -2,6 +2,7 @@ require 'rails_helper'
 RSpec.feature 'Users can delete categories' do
     scenario 'successfully' do
         FactoryGirl.create(:category, name: 'Adrenaline')
+        login_as(FactoryGirl.create(:user, :admin))
         visit '/categories'
         click_link 'Adrenaline'
         click_link 'Delete category'

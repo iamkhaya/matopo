@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Users can create new categories' do
   before do
+    login_as(FactoryGirl.create(:user, :admin))
     visit '/categories'
     click_link 'New Category'
   end

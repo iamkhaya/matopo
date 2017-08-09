@@ -5,6 +5,7 @@ RSpec.feature 'Users can edit existing activities' do
                        categories_count: 2)
   end
   before do
+    login_as(FactoryGirl.create(:user, :admin))
     visit activity_path(activity)
     click_link 'Edit Activity'
   end

@@ -1,6 +1,8 @@
+require 'rails_helper'
 RSpec.feature 'Users can edit existing categories' do
   before do
     FactoryGirl.create(:category, name: 'Adrenaline')
+    login_as(FactoryGirl.create(:user, :admin))
     visit '/categories'
     click_link 'Adrenaline'
     click_link 'Edit Category'
