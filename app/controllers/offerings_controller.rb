@@ -12,18 +12,6 @@ class OfferingsController < ApplicationController
 
   private
 
-  def offering_params
-    params.require(:offering).permit(:provider_id,
-                                     :name,
-                                     :description,
-                                     :place,
-                                     :pricingperperson,
-                                     :inclusions,
-                                     :exclusions,
-                                     :activity_id,
-                                     :attachment)
-  end
-
   def set_offering
     @offering = Offering.find(params[:id])
   end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Users can delete reservations' do
   before do
+    login_as(FactoryGirl.create(:user, :admin))
     trip = FactoryGirl.create(:trip)
     provider = FactoryGirl.create(:provider)
     activity = FactoryGirl.create(:activity, id: 1, name: 'Cycle Tours')
