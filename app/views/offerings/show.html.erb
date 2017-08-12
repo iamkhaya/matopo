@@ -11,18 +11,27 @@
 <p><b>Inclusions:&nbsp;</b><%= @offering.inclusions %></p>
 <p><b>Exclusions:&nbsp;</b><%= @offering.exclusions  %></p>
 
-<p><%=simple_format(@offering.description) %></p>
+<% if @offering.attachment.present? %>
+  <p><b>Inclusions:&nbsp;</b>
+  <div class="attachment">
+    <p>
+      <%= link_to File.basename(@offering.attachment.url), @offering.attachment.url %>
+        (<%= number_to_human_size(@offering.attachment.size) %>)
+    </p>
+  </div>
+<% end %>
 
-    <ul class="actions">
-        <li>
-          <li><%= link_to "Edit Offering", edit_provider_path, class: "edit" %>
-        </li>
-        <li>
-            <%= link_to "Delete Offering", [@offering],
-                method: :delete,
-                data: { confirm: "Are you sure you want to delete this offering?" },
-                class: "delete"
-            %>
-        </li>
-    </ul>
+
+<ul class="actions">
+    <li>
+      <li><%= link_to "Edit Offering", edit_provider_path, class: "edit" %>
+    </li>
+    <li>
+        <%= link_to "Delete Offering", [@offering],
+            method: :delete,
+            data: { confirm: "Are you sure you want to delete this offering?" },
+            class: "delete"
+        %>
+    </li>
+</ul>
   </header>

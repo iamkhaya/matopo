@@ -6,4 +6,5 @@ class Offering < ApplicationRecord
   validates :pricingperperson, presence: true
   validates :inclusions, presence: true
   validates :exclusions, presence: true
+  mount_uploader :attachment, AttachmentUploader
 end

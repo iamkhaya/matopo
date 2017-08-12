@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 # Bootstrap Gemfile
 gem 'bootstrap-sass', '~> 3.3'
+# gem for managing file uploads
+gem 'carrierwave', '~> 1.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # gem for country localization

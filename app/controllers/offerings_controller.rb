@@ -20,7 +20,8 @@ class OfferingsController < ApplicationController
                                      :pricingperperson,
                                      :inclusions,
                                      :exclusions,
-                                     :activity_id)
+                                     :activity_id,
+                                     :attachment)
   end
 
   def set_offering

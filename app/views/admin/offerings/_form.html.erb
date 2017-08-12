@@ -8,6 +8,7 @@
   <%= f.input :pricingperperson, label: 'Price per Person' %>
   <%= f.input :inclusions,label: 'Whats included'%>
   <%= f.input :exclusions, label: 'Whats not included' %>
+  <%= f.input :attachment, as: :file, label: "File" %>
 
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
