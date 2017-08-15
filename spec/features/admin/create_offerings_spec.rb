@@ -16,10 +16,22 @@ RSpec.feature 'Users can create new offerings' do
     fill_in 'Price per Person', with: 200
     fill_in 'Whats included', with: 'Adrenaline'
     fill_in 'Whats not included', with: 'No Adrenaline'
-    attach_file 'File', 'spec/fixtures/offering_image_1.jpg'
+
+    attach_file "File #1", Rails.root.join("spec/fixtures/offering_image_1.jpg")
+    attach_file "File #2", Rails.root.join("spec/fixtures/offering_image_2.jpg")
+    attach_file "File #3", Rails.root.join("spec/fixtures/offering_image_3.jpg")
+    attach_file "File #4", Rails.root.join("spec/fixtures/offering_image_4.jpg")
+    attach_file "File #5", Rails.root.join("spec/fixtures/offering_image_5.jpg")
+    attach_file "File #6", Rails.root.join("spec/fixtures/offering_image_6.jpg")
+
     click_button 'Create Offering'
     expect(page).to have_content 'Offering has been created.'
     expect(page).to have_content 'offering_image_1.jpg'
+    expect(page).to have_content 'offering_image_2.jpg'
+    expect(page).to have_content 'offering_image_3.jpg'
+    expect(page).to have_content 'offering_image_4.jpg'
+    expect(page).to have_content 'offering_image_5.jpg'
+    expect(page).to have_content 'offering_image_6.jpg'
   end
 
   scenario 'with invalid attributes' do

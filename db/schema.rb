@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812092324) do
+ActiveRecord::Schema.define(version: 20170812103728) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20170812092324) do
     t.integer "category_id"
     t.index ["activity_id"], name: "index_activities_categories_on_activity_id", using: :btree
     t.index ["category_id"], name: "index_activities_categories_on_category_id", using: :btree
+  end
+
+  create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "file"
+    t.integer  "offering_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["offering_id"], name: "index_attachments_on_offering_id", using: :btree
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,7 +56,6 @@ ActiveRecord::Schema.define(version: 20170812092324) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "name"
-    t.string   "attachment"
     t.index ["activity_id"], name: "index_offerings_on_activity_id", using: :btree
     t.index ["provider_id"], name: "index_offerings_on_provider_id", using: :btree
   end
@@ -119,4 +126,5 @@ ActiveRecord::Schema.define(version: 20170812092324) do
 
   add_foreign_key "activities", "categories"
   add_foreign_key "activities", "offerings", on_delete: :cascade
+  add_foreign_key "attachments", "offerings"
 end

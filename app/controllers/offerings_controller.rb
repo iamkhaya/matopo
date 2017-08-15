@@ -23,4 +23,16 @@ class OfferingsController < ApplicationController
                   Provider.new
                 end
   end
+
+  def offering_params
+    params.require(:offering).permit(:provider_id,
+                                     :name,
+                                     :description,
+                                     :place,
+                                     :pricingperperson,
+                                     :inclusions,
+                                     :exclusions,
+                                     :activity_id,
+                                     attachments_attributes: [:file, :file_cache])
+  end
 end

@@ -4,6 +4,9 @@ class Admin::OfferingsController < Admin::ApplicationController
 
   def new
     @offering = Offering.new
+    # authorize @offering, :create?
+    6.times { @offering.attachments.build }
+
   end
 
   def create
@@ -44,7 +47,7 @@ class Admin::OfferingsController < Admin::ApplicationController
                                      :inclusions,
                                      :exclusions,
                                      :activity_id,
-                                     :attachment)
+                                     attachments_attributes: [:file, :file_cache])
   end
 
   def set_offering

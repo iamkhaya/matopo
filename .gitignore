@@ -28,3 +28,4 @@ architecture/*
 .DS_Store
 .idea/
 config/database.yml
+public/uploads

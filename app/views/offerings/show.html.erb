@@ -11,16 +11,18 @@
 <p><b>Inclusions:&nbsp;</b><%= @offering.inclusions %></p>
 <p><b>Exclusions:&nbsp;</b><%= @offering.exclusions  %></p>
 
-<% if @offering.attachment.present? %>
-  <p><b>Inclusions:&nbsp;</b>
-  <div class="attachment">
-    <p>
-      <%= link_to File.basename(@offering.attachment.url), @offering.attachment.url %>
-        (<%= number_to_human_size(@offering.attachment.size) %>)
-    </p>
+<% if @offering.attachments.any? %>
+  <p><b>Attachments</b></p>
+  <div class="attachments">
+    <% @offering.attachments.each do |attachment| %>
+      <p>
+        <%= link_to File.basename(attachment.file.url),
+        attachment.file.url %>
+        (<%= number_to_human_size(attachment.file.size) %>)
+      </p>
+    <% end %>
   </div>
 <% end %>
-
 
 <ul class="actions">
     <li>
