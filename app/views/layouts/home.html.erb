@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if content_for?(:title) %>
+      <%= yield(:title) %>
+    <% else %>
+      "Home Page"
+      <% end %>
+    </title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => "reload" %>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,700" rel="stylesheet">
+  </head>
+
+  <body>
+    <header role='banner'>
+      <%= render 'layouts/home/header' %>
+    </header>
+
+    <%= render 'layouts/application/flash' %>
+    <%= yield %>
+
+  </body>
+
+</html>

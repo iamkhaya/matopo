@@ -1,5 +1,6 @@
 class Admin::CategoriesController < Admin::ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def new
     @category = Category.new
@@ -26,7 +27,7 @@ class Admin::CategoriesController < Admin::ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @category = Category.find(params[:id])
     @category.destroy

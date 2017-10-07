@@ -7,11 +7,12 @@ RSpec.feature 'Users can view reservations' do
     offering = FactoryGirl.create(:offering, provider: provider, activity_id:1 )
     @reservation = FactoryGirl.create(:reservation, offering: offering, trip: trip)
 
+    login_as(FactoryGirl.create(:user, :admin))
     visit reservations_path(@reservation)
     click_link 'View Reservation'
   end
 
-  scenario 'for a given reservation' do 
+  scenario 'for a given reservation' do
     expect(page.current_url).to eq reservation_url(@reservation)
   end
 end

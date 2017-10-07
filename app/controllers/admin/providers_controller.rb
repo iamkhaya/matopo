@@ -1,5 +1,6 @@
 class Admin::ProvidersController < Admin::ApplicationController
   before_action :set_provider, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def new
     @provider = Provider.new

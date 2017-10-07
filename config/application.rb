@@ -18,5 +18,7 @@ module Matopo
     # in Rails 5.1. This still causes Strings to be parsed as if they were in
     # Time.zone, and Times to be converted to Time.zone.
     config.active_record.time_zone_aware_types = [:datetime, :time]
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end

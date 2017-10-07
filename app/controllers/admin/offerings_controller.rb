@@ -1,6 +1,7 @@
 class Admin::OfferingsController < Admin::ApplicationController
   before_action :set_provider, only: [:create]
   before_action :set_offering, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def new
     @offering = Offering.new

@@ -1,6 +1,7 @@
 class Admin::ReservationsController < Admin::ApplicationController
   before_action :set_trip, only: [:create]
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def new
     @reservation = Reservation.new

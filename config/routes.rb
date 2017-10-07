@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:new, :create, :edit, :update, :destroy]
     resources :trips, only: [:new, :create, :edit, :update, :destroy]
   end
-  root 'categories#index'
+  root 'home#index'
   devise_for :users
 
   resources :activities

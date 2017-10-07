@@ -5,6 +5,7 @@ RSpec.feature 'Signed-in users can sign out' do
     login_as(user)
   end
   scenario do
+    skip
     visit '/'
     click_link 'Sign out'
     expect(page).to have_content 'Signed out successfully.'
