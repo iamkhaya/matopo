@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  root 'home#index'
+  resources :home do
+    member do
+      get 'results'
+    end
+  end
+
+  resources :activities
+  resources :categories
+  resources :offerings
+  resources :providers
+  resources :reservations
+  resources :trips
+
   namespace :admin do
     root 'application#index'
 
@@ -9,13 +23,6 @@ Rails.application.routes.draw do
     resources :reservations, only: [:new, :create, :edit, :update, :destroy]
     resources :trips, only: [:new, :create, :edit, :update, :destroy]
   end
-  root 'home#index'
-  devise_for :users
 
-  resources :activities
-  resources :categories
-  resources :offerings
-  resources :providers
-  resources :reservations
-  resources :trips
+  devise_for :users
 end

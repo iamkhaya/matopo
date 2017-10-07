@@ -5,12 +5,10 @@ RSpec.feature 'Users can sign in' do
   scenario 'with valid credentials' do
     skip
     visit '/admin'
-    # binding.pry
     click_link 'Sign in'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
     click_button 'Log in'
-    # binding.pry
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content "Signed in as #{user.email}"
   end

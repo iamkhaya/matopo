@@ -20,6 +20,8 @@ gem 'font-awesome-rails', '~> 4.3'
 gem 'jbuilder', '~> 2.5'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Use jquery-ui library
+gem 'jquery-ui-rails'
 # MySql2 gem
 gem 'mysql2'
 # Use Puma as the app server
