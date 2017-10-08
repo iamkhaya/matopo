@@ -8,6 +8,10 @@ class HomeController < ApplicationController
     @offerings = Offering.all
   end
 
+  def offering
+    @offerings = Offering.find(7)
+  end
+
   private
 
   def admins_and_users
