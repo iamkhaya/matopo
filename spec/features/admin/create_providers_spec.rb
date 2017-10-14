@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new providers' do
   before do
-    login_as(FactoryGirl.create(:user, :admin))
-    visit '/providers'
+    login_as(FactoryGirl.create(:admin_user))
+    visit admin_providers_path
     click_link 'New Provider'
   end
+
   scenario 'with valid attributes' do
     fill_in 'Name', with: 'Cycle Trekkers'
     fill_in 'Email 1', with: 'admin@cycletrekkers.com'
@@ -21,13 +22,11 @@ RSpec.feature 'Users can create new providers' do
     fill_in 'Website', with: 'www.cycleafrica.com'
 
     click_button 'Create Provider'
-    expect(page).to have_content 'Provider has been created'
+    expect(page).to have_content 'Provider was successfully created.'
   end
 
   scenario 'with invalid attributes' do
     click_button 'Create Provider'
-
-    expect(page).to have_content 'Provider has not been created'
-    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content("can't be blank", count: 11)
   end
 end

@@ -4,7 +4,7 @@ RSpec.feature 'Users can view offerings' do
     provider = FactoryGirl.create(:provider)
     activity = FactoryGirl.create(:activity, id: 1, name: 'Cycle Tours')
     @offering = FactoryGirl.create(:offering, provider: provider, activity_id:1 )
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     visit offerings_path
     click_link 'View Offering'
   end

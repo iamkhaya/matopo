@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root 'home#index'
   resources :home do
     member do
@@ -14,16 +16,5 @@ Rails.application.routes.draw do
   resources :reservations
   resources :trips
 
-  namespace :admin do
-    root 'application#index'
-
-    resources :activities, only: [:new, :create, :edit, :update, :destroy]
-    resources :categories, only: [:new, :create, :edit, :update, :destroy]
-    resources :offerings, only: [:new, :create, :edit, :update, :destroy]
-    resources :providers, only: [:new, :create, :edit, :update, :destroy]
-    resources :reservations, only: [:new, :create, :edit, :update, :destroy]
-    resources :trips, only: [:new, :create, :edit, :update, :destroy]
-  end
-
-  devise_for :users
+  devise_for :users, ActiveAdmin::Devise.config
 end

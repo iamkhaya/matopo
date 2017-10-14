@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new activities' do
   before do
-    login_as(FactoryGirl.create(:user, :admin))
-
+    login_as(FactoryGirl.create(:admin_user))
     category = FactoryGirl.create(:category, name: 'Adrenaline')
-    visit activities_path
+    visit admin_activities_path
     click_link 'New Activity'
   end
 
@@ -14,14 +13,11 @@ RSpec.feature 'Users can create new activities' do
     fill_in 'Description', with: 'Go up a mountain'
     select 'Adrenaline', from: 'Categories'
     click_button 'Create Activity'
-    expect(page).to have_content 'Activity has been created.'
+    expect(page).to have_content 'Activity was successfully created.'
   end
 
   scenario 'with invalid attributes' do
     click_button 'Create Activity'
-    expect(page).to have_content 'Activity has not been created.'
-    expect(page).to have_content "Name can't be blank"
-    expect(page).to have_content "Description can't be blank"
-    expect(page).to have_content "Categories can't be blank"
+    expect(page).to have_content("can't be blank", count: 3)
   end
 end

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature 'Users can create new offerings' do
   before do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     provider = FactoryGirl.create(:provider, name: 'Cyclix')
     activity = FactoryGirl.create(:activity, name: 'Cycle Tours')
-    visit offerings_path
+    visit admin_offerings_path
     click_link 'New Offering'
   end
   scenario 'with valid attributes' do
@@ -25,7 +25,7 @@ RSpec.feature 'Users can create new offerings' do
     attach_file "File #6", Rails.root.join("spec/fixtures/offering_image_6.jpg")
 
     click_button 'Create Offering'
-    expect(page).to have_content 'Offering has been created.'
+    expect(page).to have_content 'Category was successfully created.'
     expect(page).to have_content 'offering_image_1.jpg'
     expect(page).to have_content 'offering_image_2.jpg'
     expect(page).to have_content 'offering_image_3.jpg'

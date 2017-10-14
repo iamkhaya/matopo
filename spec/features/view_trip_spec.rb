@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Users can view trips' do
   scenario 'with the trip details' do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     trip = FactoryGirl.create(:trip)
     visit '/trips'
     click_link 'View Trip'

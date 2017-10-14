@@ -3,11 +3,88 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def new
+    binding.pry
+    @activity = Activity.new
+  end
+
+  def create
+    @activity = @category.activities.build(activity_params)
+    if @activity.save
+      flash[:notice] = 'Activity was successfully created..'
+      redirect_to activity_path(@activity)
+    else
+      flash.now[:alert] = 'Activity has not been created.'
+      render 'new'
+    end
+  end
+
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    if @activity.update(activity_params)
+      flash[:notice] = 'Activity has been updated.'
+      redirect_to [@category, @activity]
+    else
+      flash.now[:alert] = 'Activity has not been updated.'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    if @activity.destroy
+      flash[:notice] = 'Activity has been deleted.'
+      redirect_to @activity
+    else
+      flash.now[:alert] = 'Activity has not been deleted.'
+      redirect_to activities_path
+    end
+  end
+
+
   def index
     @activities = Activity.all
   end
 
   def show; end
+
+
+  def create
+    @activity = @category.activities.build(activity_params)
+    if @activity.save
+      flash[:notice] = 'Activity was successfully created..'
+      redirect_to activity_path(@activity)
+    else
+      flash.now[:alert] = 'Activity has not been created.'
+      render 'new'
+    end
+  end
+
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    if @activity.update(activity_params)
+      flash[:notice] = 'Activity has been updated.'
+      redirect_to [@category, @activity]
+    else
+      flash.now[:alert] = 'Activity has not been updated.'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    if @activity.destroy
+      flash[:notice] = 'Activity has been deleted.'
+      redirect_to @activity
+    else
+      flash.now[:alert] = 'Activity has not been deleted.'
+      redirect_to activities_path
+    end
+  end
 
   private
 
@@ -24,4 +101,7 @@ class ActivitiesController < ApplicationController
   def set_category
     @category = Category.new
   end
+
+
+
 end

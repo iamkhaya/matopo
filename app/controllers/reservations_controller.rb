@@ -13,6 +13,37 @@ class ReservationsController < ApplicationController
 
   def show; end
 
+  def new
+    @reservation = Reservation.new
+  end
+
+  def create
+    @reservation = @trip.reservations.build(reservation_params)
+    if @reservation.save
+      flash[:notice] = 'Reservation was successfully created..'
+      redirect_to reservation_path(@reservation)
+    else
+      flash.now[:alert] = "Reservation hasn't been created."
+      render 'new'
+    end
+  end
+
+  def update
+    if @reservation.update(reservation_params)
+      flash[:notice] = 'Reservation has been updated.'
+      redirect_to reservations_path
+    else
+      flash.now[:alert] = 'Reservation has not been updated.'
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @reservation.destroy
+    flash[:notice] = 'Reservation has been deleted.'
+    redirect_to reservations_path
+  end
+
   private
 
   def set_reservation

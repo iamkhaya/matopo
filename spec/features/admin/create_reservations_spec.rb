@@ -6,8 +6,8 @@ RSpec.feature 'Users can create reservations' do
     provider = FactoryGirl.create(:provider)
     activity = FactoryGirl.create(:activity, id: 1, name: 'Cycle Tours')
     offering = FactoryGirl.create(:offering, provider: provider, activity_id:1 )
-    login_as(FactoryGirl.create(:user, :admin))
-    visit reservations_path
+    login_as(FactoryGirl.create(:admin_user))
+    visit admin_reservations_path
     click_link 'New Reservation'
   end
 
@@ -30,7 +30,7 @@ RSpec.feature 'Users can create reservations' do
 
     fill_in 'Status', with: 'booked'
     click_button 'Create Reservation'
-    expect(page).to have_content 'Reservation has been created.'
+    expect(page).to have_content 'Reservation was successfully created..'
   end
 
   scenario 'with invalid attributes' do

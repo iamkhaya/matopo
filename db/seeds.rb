@@ -68,3 +68,4 @@ unless User.exists?(email: 'customer@matopo.com')
                password: 'p455word',
                admin: true)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

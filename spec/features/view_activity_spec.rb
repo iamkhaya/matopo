@@ -6,7 +6,7 @@ RSpec.feature 'Users can view activities' do
   end
 
   before do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     visit activities_path(activity)
     click_link 'View Activity'
   end

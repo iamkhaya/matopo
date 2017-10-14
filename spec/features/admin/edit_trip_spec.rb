@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.feature 'Users can edit existing trips' do
   before do
     FactoryGirl.create(:trip)
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     visit '/trips'
     click_link 'Edit Trip'
   end

@@ -14,7 +14,7 @@ scenario "with valid attributes" do
 fill_in "Name", with: "Non-standards compliance"
 fill_in "Description", with: "My pages are ugly!"
 click_button "Create Ticket"
-expect(page).to have_content "Ticket has been created."
+expect(page).to have_content "Ticket was successfully created.."
 end
 scenario "whenclick_buttonproviding invalid"Create Ticket"
 attributes" do
@@ -71,7 +71,7 @@ New Ticket
 def create
   @offering = @provider.offerings.build(offering_params)
   if @offering.save
-    flash[:notice] = 'Offering has been created.'
+    flash[:notice] = 'Offering was successfully created..'
     redirect_to [@provider, @offering]
   else
     flash.now[:alert] = 'Offering has not been created.'

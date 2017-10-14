@@ -6,7 +6,7 @@ RSpec.feature 'Users can delete activities' do
   end
 
   before do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     visit activity_path(activity)
   end
   scenario 'successfully' do

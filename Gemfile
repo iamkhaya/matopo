@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Active Admin
+gem 'activeadmin', github: 'activeadmin'
 # Bootstrap Gemfile
 gem 'bootstrap-sass', '~> 3.3'
 # gem for managing file uploads
@@ -24,6 +26,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # MySql2 gem
 gem 'mysql2'
+# paperclip gem
+gem "paperclip", "~> 5.0.0"
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

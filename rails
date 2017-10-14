@@ -15,7 +15,7 @@ RSpec.feature "Users can create new activities" do
     fill_in "Category", with: "Adrenaline"
 
     click_button "Create Activity"
-    expect(page).to have_content "Activity has been created."
+    expect(page).to have_content "Activity was successfully created.."
 
     activity = Activity.find_by(name: "Hiking")
     expect(page.current_url).to eq activity_url(activity)
@@ -94,7 +94,7 @@ Add the new form under new view
 def create
   @activity = activity.new(activity_params)
   if @activity.save
-    flash[:notice] = "activity has been created."
+    flash[:notice] = "activity was successfully created.."
     redirect_to @activity
   else
     # nothing, yet

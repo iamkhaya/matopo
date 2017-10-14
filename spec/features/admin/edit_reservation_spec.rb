@@ -7,7 +7,7 @@ RSpec.feature 'Users can edit existing reservations' do
     offering = FactoryGirl.create(:offering, provider: provider, activity_id:1)
     @reservation = FactoryGirl.create(:reservation, offering: offering, trip: trip)
 
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     visit reservations_path(@reservation)
     click_link 'Edit Reservation'
   end

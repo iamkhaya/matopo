@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Users can delete providers' do
   scenario 'successfully' do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(FactoryGirl.create(:admin_user))
     FactoryGirl.create(:trip)
     visit '/trips'
     click_link 'Delete Trip'
