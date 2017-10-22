@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   layout 'home'
   def index
-    @offerings = Offering.all
+    @offerings = Offering.first(6)
   end
 
   def results
