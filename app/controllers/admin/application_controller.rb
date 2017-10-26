@@ -1,18 +1,15 @@
 class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin!
+  layout :layout_by_resource
 
   def index
-    render layout: false
+    render 'index'
   end
 
   def authorize_admin!
     authenticate_user!
-    unless current_user.admin?
-      redirect_to root_path, alert: 'You must be an admin to do that.'
-    end
+    render 'index' unless current_user.admin?
   end
-
-  layout :layout_by_resource
 
   protected
 
@@ -21,8 +18,12 @@ class Admin::ApplicationController < ApplicationController
     if request.referer == sign_in_url
       super
     else
-      stored_location_for(resource) || request.referer || admin_categories_path
+      stored_location_for(resource) || request.referer || admin_root_path
     end
+  end
+
+  def after_sign_out_path_for(_resource)
+    redirect_to admin_root_path
   end
 
   private

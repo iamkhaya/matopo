@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!
+  layout :layout_by_resource
   def index
     @trips = Trip.all
   end
@@ -25,5 +26,13 @@ class TripsController < ApplicationController
                                  :city,
                                  :region,
                                  :country)
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

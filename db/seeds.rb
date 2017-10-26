@@ -751,14 +751,23 @@ reservations = Reservation.create([
                                   ])
 
 # Users
-unless User.exists?(email: 'admin@matopo.com')
-  User.create!(email: 'admin@matopo.com',
-               password: 'p455word',
-               admin: true)
-end
+user1 = User.new(
+  {
+    email: 'admin1@admin.com',
+    password: 'password',
+    password_confirmation: 'password',
+    admin: true
+  }
+)
+user1.save
 
-unless User.exists?(email: 'customer@matopo.com')
-  User.create!(email: 'customer@matopo.com',
-               password: 'p455word',
-               admin: false)
-end
+
+user2 = User.new(
+  {
+    email: 'superadmin1@testing.com',
+    password: 'password',
+    password_confirmation: 'password',
+    admin:false
+  }
+)
+user2.save

@@ -1,6 +1,7 @@
 class Admin::ActivitiesController < Admin::ApplicationController
   before_action :set_category, only: [:create]
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity, only: %i[show edit update destroy]
+  layout :layout_by_resource
 
   def new
     @activity = Activity.new
@@ -55,5 +56,13 @@ class Admin::ActivitiesController < Admin::ApplicationController
 
   def set_category
     @category = Category.new
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

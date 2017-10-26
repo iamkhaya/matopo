@@ -1,7 +1,8 @@
 class ReservationsController < ApplicationController
   before_action :set_trip, only: [:create]
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  layout :layout_by_resource
   def index
     @reservations = Reservation.all
   end
@@ -9,7 +10,6 @@ class ReservationsController < ApplicationController
   def edit
     @reservation = Reservation.find(params[:id])
   end
-
 
   def show; end
 
@@ -32,5 +32,13 @@ class ReservationsController < ApplicationController
                                         :end_time, :status,
                                         :user_id, :exclusions,
                                         :inclusions, :offering_id)
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

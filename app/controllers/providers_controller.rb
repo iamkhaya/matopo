@@ -1,5 +1,6 @@
 class ProvidersController < ApplicationController
   before_action :authenticate_user!
+  layout :layout_by_resource
   def index
     @providers = Provider.all
   end
@@ -19,5 +20,13 @@ class ProvidersController < ApplicationController
                                      :phone_2, :tax_number, :street_number,
                                      :street_name_1, :city, :province,
                                      :country, :website)
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

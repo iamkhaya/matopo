@@ -1,7 +1,8 @@
 class ActivitiesController < ApplicationController
   before_action :set_category, only: [:create]
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :set_activity, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  layout :layout_by_resource
 
   def index
     @activities = Activity.all
@@ -23,5 +24,13 @@ class ActivitiesController < ApplicationController
 
   def set_category
     @category = Category.new
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

@@ -1,7 +1,8 @@
 class OfferingsController < ApplicationController
   before_action :set_provider, only: [:create]
-  before_action :set_offering, only: [:show, :edit, :update, :destroy]
+  before_action :set_offering, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  layout :layout_by_resource
 
   def index
     @offerings = Offering.all
@@ -34,6 +35,14 @@ class OfferingsController < ApplicationController
                                      :inclusions,
                                      :exclusions,
                                      :activity_id,
-                                     attachments_attributes: [:file, :file_cache])
+                                     attachments_attributes: %i[file file_cache])
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end

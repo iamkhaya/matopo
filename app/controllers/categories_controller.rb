@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  layout :layout_by_resource
 
   def index
     @categories = Category.all
@@ -25,5 +26,13 @@ class CategoriesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = 'The category you were looking for could not be found.'
     redirect_to categories_path
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      'devise'
+    else
+      'application'
+    end
   end
 end
