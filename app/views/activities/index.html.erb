@@ -1,12 +1,18 @@
-<header>
-  <h3>Activities</h3>
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <%= button_to "New Activity", new_admin_activity_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <h2>Activities</h2>
+</div>
 
-  <ul class="actions">
-    <li>
-      <%= link_to "New  Activity", new_admin_activity_path, class: "new" %>
-    </li>
-  </ul>
-</header>
+<center>
+  <div class="pagination">
+    <%= will_paginate @activities %>
+  </div>
+</center>
+
 <div id="activities">
   <centre>
     <div class="table-responsive table-striped table-condensed">
@@ -40,11 +46,17 @@
             </td>
 
             <td>
-              <%= link_to "View Activity", activity_path(activity), class: "new" %>
+                <%= link_to  activity_path(activity), class: "btn btn-success btn-xs" do %>
+                <i class=" fa fa-check"></i>
+                <%end%>
 
-              <%= link_to "Edit Activity", edit_admin_activity_path(activity), class: "edit" %>
+                <%= link_to  edit_admin_activity_path(activity), class: "btn btn-primary btn-xs" do %>
+                <i class=" fa fa-pencil"></i>
+                <%end%>
 
-              <%= link_to "Delete Activity", admin_activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
+                <%= link_to activity_path(activity), class: "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure you want to delete this provider?" } do %>
+                <i class=" fa fa-trash-o"></i>
+                <%end%>
             </td>
           </tr>
         </tr>

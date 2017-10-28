@@ -5,7 +5,7 @@ class OfferingsController < ApplicationController
   layout :layout_by_resource
 
   def index
-    @offerings = Offering.all
+    @offerings = Offering.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

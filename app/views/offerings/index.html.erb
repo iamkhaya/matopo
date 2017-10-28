@@ -1,71 +1,92 @@
-<header>
-    <h3>Offerings</h3>
-
-    <ul class="actions">
-        <li>
-            <%= link_to "New Offering", new_admin_offering_path, class: "new" %>
-        </li>
-    </header>
-    <div id="offerings">
-        <centre>
-            <div class="table-responsive table-striped table-condensed">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Provider</th>
-                            <th>Name</th>
-                            <th>Activity</th>
-                            <th>Description</th>
-                            <th>Place</th>
-                            <th>PricingPerPerson</th>
-                            <th>Inclusions</th>
-                            <th>Exclusions</th>
-                            <th>Manipulation</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <% @offerings.each do |offering| %>
-                        <tr>
-
-                            <td>
-                                <p><%=  offering.provider %></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.name %></p>
-                            </td>
-                            <td>
-                                <p><%=  Activity.find(offering.activity_id).name %></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.description %></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.place %></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.pricingperperson%></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.inclusions %></p>
-                            </td>
-                            <td>
-                                <p><%=  offering.exclusions %></p>
-                            </td>
-                            <td>
-                                <%= link_to "View Offering", offering_path(offering), class: "new" %>
-
-                                <%= link_to "Edit Offering", edit_admin_offering_path(offering), class: "edit" %>
-
-                                <%= link_to "Delete Offering", admin_offering_path(offering), method: :delete, data: { confirm: "Are you sure you want to delete this offering?" }, class: "delete" %>
-                            </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-
-                </table>
-            </div>
-        </centre>
-
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <%= button_to "New Offering", new_admin_offering_path, class: "btn btn-primary" %>
     </div>
+  </div>
+  <h2>Offerings</h2>
+</div>
+
+<center>
+  <div class="pagination">
+    <%= will_paginate @offerings %>
+  </div>
+</center>
+
+<div id="offerings">
+  <centre>
+    <div class="table-responsive table-striped table-condensed">
+      <table class="table table-responsive table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Provider</th>
+            <th>Name</th>
+            <th>Activity</th>
+            <th>Description</th>
+            <th>Place</th>
+            <th>Pricing pp</th>
+            <th>Inclusions</th>
+            <th>Exclusions</th>
+            <th>Manipulation</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @offerings.each do |offering| %>
+          <tr>
+            <td>
+              <p><%=  offering.id %></p>
+            </td>
+            <td>
+              <p><%=  offering.provider.name %></p>
+            </td>
+            <td>
+              <p><%=  offering.name %></p>
+            </td>
+            <td>
+              <p><%=  Activity.find(offering.activity_id).name %></p>
+            </td>
+            <td>
+              <p><%=  offering.description %></p>
+            </td>
+            <td>
+              <p><%=  offering.place %></p>
+            </td>
+            <td>
+              <p><%=  offering.pricingperperson%></p>
+            </td>
+            <td>
+              <p><%=  offering.inclusions %></p>
+            </td>
+            <td>
+              <p><%=  offering.exclusions %></p>
+            </td>
+            <td align="center" valign="middle">
+
+              <div class="hidden-phone">
+
+                <%= link_to offering_path(offering), class: "btn btn-success btn-xs" do %>
+                <i class=" fa fa-check"></i>
+                <%end%>
+
+                <%= link_to  edit_admin_offering_path(offering), class: "btn btn-primary btn-xs" do %>
+                <i class=" fa fa-pencil"></i>
+                <%end%>
+
+                <%= link_to admin_offering_path(offering), class: "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure you want to delete this provider?" } do %>
+                <i class=" fa fa-trash-o"></i>
+                <%end%>
+
+              </div>
+
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </centre>
+
+</div>

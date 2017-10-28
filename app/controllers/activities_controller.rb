@@ -5,7 +5,7 @@ class ActivitiesController < ApplicationController
   layout :layout_by_resource
 
   def index
-    @activities = Activity.all
+    @activities = Activity.paginate(page: params[:page], per_page: 10)
   end
 
   def show; end

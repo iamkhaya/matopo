@@ -2,7 +2,7 @@ class ProvidersController < ApplicationController
   before_action :authenticate_user!
   layout :layout_by_resource
   def index
-    @providers = Provider.all
+    @providers = Provider.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
   layout :layout_by_resource
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

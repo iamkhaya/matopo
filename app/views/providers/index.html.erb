@@ -1,90 +1,95 @@
-<header>
-    <h3>Providers</h3>
-
-    <ul class="actions">
-        <li>
-            <%= link_to "New Provider", new_admin_provider_path, class: "new" %>
-        </li>
-    </header>
-    <div id="providers">
-        <centre>
-            <div class="table-responsive table-striped table-condensed">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>name</th>
-                            <th>email_1</th>
-                            <th>email_2</th>
-                            <th>phone_1</th>
-                            <th>phone_2</th>
-                            <th>tax_number</th>
-                            <th>street_number</th>
-                            <th>street_name_1</th>
-                            <th>city</th>
-                            <th>province</th>
-                            <th>country</th>
-                            <th>website</th>
-                            <th>Manipulation</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <% @providers.each do |provider| %>
-                        <tr>
-
-                            <td>
-                                <p><%=  provider.name %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.email_1 %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.email_2 %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.phone_1 %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.phone_2 %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.tax_number %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.street_number %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.street_name_1 %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.city %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.province %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.country %></p>
-                            </td>
-                            <td>
-                                <p><%=  provider.website %></p>
-                            </td>
-
-                            <td>
-                                <%= link_to "New Offering", new_provider_path, class: "new" %>
-
-                                <%= link_to "View Provider", provider_path(provider), class: "new" %>
-
-                                <%= link_to "Edit Provider", edit_admin_provider_path(provider), class: "edit" %>
-
-                                <%= link_to "Delete Provider", admin_provider_path(provider), method: :delete, data: { confirm: "Are you sure you want to delete this provider?" }, class: "delete" %>
-                            </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
-
-                </table>
-            </div>
-        </centre>
-
+<div class='page-header'>
+  <div class='btn-toolbar pull-right'>
+    <div class='btn-group'>
+      <%= button_to "New Provider", new_admin_provider_path, class: "btn btn-primary" %>
     </div>
+  </div>
+  <h2>Providers</h2>
+</div>
+
+<center>
+  <div class="pagination">
+    <%= will_paginate @providers %>
+  </div>
+</center>
+<div id="providers">
+  <centre>
+    <div class="table-responsive table-striped table-condensed">
+      <table class="table table-responsive table-striped table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Cellphone</th>
+            <th>Tax Number</th>
+            <th>Street Number</th>
+            <th>Street Name</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Website</th>
+            <th>Manipulation</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @providers.each do |provider| %>
+          <tr>
+            <td>
+              <p><%=  provider.id %></p>
+            </td>
+            <td>
+              <p><%=  provider.name %></p>
+            </td>
+            <td>
+              <p><%=  provider.email_1 %></p>
+            </td>
+            <td>
+              <p><%=  provider.phone_1 %></p>
+            </td>
+            <td>
+              <p><%=  provider.tax_number %></p>
+            </td>
+            <td>
+              <p><%=  provider.street_number %></p>
+            </td>
+            <td>
+              <p><%=  provider.street_name_1 %></p>
+            </td>
+            <td>
+              <p><%=  provider.city %></p>
+            </td>
+            <td>
+              <p><%=  provider.country %></p>
+            </td>
+            <td>
+              <p><%=  provider.website %></p>
+            </td>
+
+            <td>
+              <div class="pull-right hidden-phone">
+
+                <%= link_to  admin_provider_path(provider), class: "btn btn-success btn-xs" do %>
+                <i class=" fa fa-check"></i>
+                <%end%>
+
+                <%= link_to  edit_admin_provider_path(provider), class: "btn btn-primary btn-xs" do %>
+                <i class=" fa fa-pencil"></i>
+                <%end%>
+
+                <%= link_to admin_provider_path(provider), class: "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure you want to delete this provider?" } do %>
+                <i class=" fa fa-trash-o"></i>
+                <%end%>
+
+              </div>
+
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </centre>
+
+</div>

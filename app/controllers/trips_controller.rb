@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   before_action :authenticate_user!
   layout :layout_by_resource
   def index
-    @trips = Trip.all
+    @trips = Trip.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
