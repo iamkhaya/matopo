@@ -1,7 +1,7 @@
 <div class='page-header'>
   <div class='btn-toolbar pull-right'>
     <div class='btn-group'>
-      <%= button_to "New Category", new_admin_category_path, class: "btn btn-primary" %>
+      <%= link_to "New Category", new_admin_category_path, class: "btn btn-primary" %>
     </div>
   </div>
   <h2>Categories</h2>
@@ -43,11 +43,11 @@
 
               <div class="pull-left hidden-phone">
 
-                <%= link_to category_path(category), class: "btn btn-success btn-xs" do %>
+                <%= link_to category_path(category), id: "view-category", class: "btn btn-success btn-xs" do %>
                 <i class=" fa fa-check"></i>
                 <%end%>
 
-                <%= link_to  edit_admin_category_path(category), class: "btn btn-primary btn-xs" do %>
+                <%= link_to  edit_admin_category_path(category), id: "edit-category", class: "btn btn-primary btn-xs edit-category" do %>
                 <i class=" fa fa-pencil"></i>
                 <%end%>
 
